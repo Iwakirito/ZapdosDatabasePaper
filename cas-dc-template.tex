@@ -31,6 +31,8 @@
 \usepackage{float}
 \usepackage{chngcntr}
 \usepackage{xcolor}
+\usepackage{csquotes} %To make neat quotes e.g. questions in Zapdos Database
+\usepackage{algorithm2e}
 
 %%%Author definitions
 %\def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
@@ -57,13 +59,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title, and Notes for the whole Paper %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Short title
-\shorttitle{Zapdos Database. This Title Will Change.} %CHANGE
+\shorttitle{Large-scale Unified Integration and Structural Archive of Solid-State Electrolyte Databases Enabled by Retrieval-Augmented Generation (RAG)} %CHANGE
 
 % Short author
 \shortauthors{I.I. Iwakiri \textit{et al.}} %CHANGE
 
 % Main title of the paper
-\title [mode = title]{Zapdos Database. This Title Will Change.} %CHANGE                     
+\title [mode = title]{Large-scale Unified Integration and Structural Archive of Solid-State Electrolyte Databases Enabled by Retrieval-Augmented Generation (RAG)} %CHANGE                     
 
 % Title footnote mark
 % eg: \tnotemark[1]
@@ -104,6 +106,21 @@
 %  Credit authorship
 \credit{Software, Writing}
 
+%Fourth Author
+\author[6]{Rafael {Bessa Loureiro}}[type=editor,
+                        orcid=0000-0002-2404-0643]
+% Corresponding author indication
+%\cormark[2]
+% Footnote of the first author
+%\fnmark[2]
+%% Email id of the first author
+\ead{r.bessaloureiro@surrey.ac.uk}
+% URL of the first author
+%\ead[url]{www.website.com}
+%  Credit authorship
+\credit{Software, Review}
+
+
 %%Fourth Author
 %\author[3,4]{Lucas J. {dos Santos}}[type=editor,
 %                        orcid=0000-0000-0000-0000]
@@ -120,20 +137,7 @@
 %%  Credit authorship
 %\credit{Software, Review}
 
-\author[3,4]{Amaro G. {Barreto Jr.}}[type=editor,
-                        orcid=0000-0000-0000-0000]
-% Corresponding author indication
-%\cormark[2]
-% Footnote of the first author
-%\fnmark[2]
 
-% Email id of the first author
-\ead{amaro@eq.ufrj.br}
-% URL of the first author
-%\ead[url]{www.website.com}
-
-%  Credit authorship
-\credit{Conceptualization, Review}
 
 %Simoldes Author
 \author[2]{Nuno M. Delgado}[type=editor,
@@ -150,6 +154,39 @@
 
 %  Credit authorship
 \credit{Conceptualization, Review}
+
+%UFRJ Author
+\author[3,4]{Amaro G. {Barreto Jr.}}[type=editor,
+                        orcid=0000-0000-0000-0000]
+% Corresponding author indication
+%\cormark[2]
+% Footnote of the first author
+%\fnmark[2]
+
+% Email id of the first author
+\ead{amaro@eq.ufrj.br}
+% URL of the first author
+%\ead[url]{www.website.com}
+
+%  Credit authorship
+\credit{Conceptualization, Review}
+
+%Surrey Author
+\author[6,7]{Erick Giovani Sperandio Nascimento}[type=editor,
+                        orcid=0000-0003-2219-0290]
+% Corresponding author indication
+%\cormark[2]
+% Footnote of the first author
+%\fnmark[2]
+
+% Email id of the first author
+\ead{erick.sperandio@surrey.ac.uk}
+% URL of the first author
+%\ead[url]{www.website.com}
+
+%  Credit authorship
+\credit{Conceptualization, Review}
+
 
 %Last Author
 \author[1]{Idelfonso B. R. Nogueira}[type=editor,
@@ -210,6 +247,20 @@
             %state={},
             country={Portugal}}
 
+\affiliation[6]{organization={Surrey Institute for People-Centred AI, School of Computer Science and Electronic Engineering, Faculty of Engineering and Physical Sciences},%Department and Organization
+            addressline={University of Surrey}, 
+            city={Guildford},
+            postcode={GU2 7XH}, 
+            %state={},
+            country={UK}}
+
+\affiliation[7]{organization={Stricto Sensu Department},%Department and Organization
+addressline={SENAI CIMATEC University}, 
+city={Salvador},
+postcode={41650-010}, 
+%state={},
+country={Brazil}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Footnotes
 % Title footnote 1.
 % eg: \tnotetext[1]{Title footnote text}
@@ -235,23 +286,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Highlights %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Research highlights
 \begin{highlights}
-\item Highlight 1
-\item Highlight 2
-\item Highlight 3
+\item Three SSE datasets were linked to Materials Project IDs via tiered matching pipeline.
+\item 3123 MP-linked conductivity entries were generated, including 554 high-confidence matches.
+\item Dataset biases were studied regarding families, temperature, and per-material sampling.
+\item Conductivity distributions were consistent with oxide and sulfide SSE literature.
+\item Retrieval-augmented interface were used for semantic, data-grounded queries.
 \end{highlights}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Keywords
 % Each keyword is separated by \sep
 \begin{keywords}
     Solid-State Electrolytes
-    \sep Database
-    \sep Conductivity
+    \sep Ionic Conductivity
+    \sep Materials Database
+    \sep Retrieval-Augmented Generation
     \sep Materials Project
 \end{keywords}
 
 % Here goes the abstract
 \begin{abstract}
-    Abstract to be written. We start emphasizing briefly the Databases Available, and their limitations - specially the uniformization i.e. we are never really sure which material we are talking about. Next, we are going to show how more systematic databases such as Materials Project sometimes lack further experimental validation and more "practical" properties such as conductivity. We emphasize the relevance of establishing this link, and the potential of creating Databases that merge the best of both worlds. We end up briefly discussing our toy-project, and the key insights taken out of it.
+The development of solid-state electrolytes (SSEs) is increasingly driven by data-centric screening and machine-learning approaches, yet the experimental conductivity record remains difficult to reuse at scale because it is fragmented and often not machine-linkable to a specific crystal structure. Generalist databases such as the Materials Project (MP) provide curated structures and computed descriptors, but typically lack experimentally measured ionic conductivities. Conversely, specialist SSE datasets curate conductivity measurements but frequently provide only coarse or inconsistent structural descriptors (\textit{e.g.} family labels, space group), leaving it ambiguous which polymorph a reported conductivity pertains to. This structural ambiguity limits reproducible comparison across studies, complicates polymorph-aware interpretation of transport trends, obstructs direct joining to computed descriptors, hinders rigorous theory-experiment benchmarking, and degrades the reliability of structure-aware data models.
+
+Here, we address this bottleneck by harmonizing three open experimental SSE conductivity datasets against MP, creating a merged corpus in which each retained conductivity measurement is explicitly linked to a unique MP identifier and annotated with a tiered, transparent confidence label. After cleaning and normalizing compositions and conductivity values, the resulting dataset comprises 3123 measurements mapped onto 310 distinct MP entries. Of these, 554 entries fall into high-confidence tiers (T1--T3), while a broader set of lower-confidence matches (T4) is retained to preserve chemical coverage. The tiering scheme exposes match reliability and enables users to select precision-focused or coverage-focused subsets without conflating the two.
+
+A statistical analysis shows that the structure-assigned subset is dominated by oxide and sulfide families central to contemporary SSE research, reproduces expected conductivity trends across structural families, and quantifies key limitations, including sparse temperature metadata and limited per-material coverage. Finally, we demonstrate a simple retrieval-augmented query interface combining semantic search with deterministic ranking to explore the conductivity landscape in a numerically grounded manner. Overall, we deliver a reusable, structure-anchored SSE conductivity dataset and a generalizable blueprint for converting experimentally reported properties into interoperable, machine-readable links to large-scale materials repositories.
 \end{abstract}
 
 % Use if graphical abstract is present
@@ -265,11 +323,9 @@
 \maketitle
 
 \section{Introduction}
-Interest in solid-electrolytes (SEs) dates back approximately 200 years to the work of Michael Faraday, with a period of rapid development in the 1960s \cite{zhao2020designing}. In the last decade, SEs have re-emerged as a materials class of notable scientific and commercial interest, standing at the heart of all-solid-state batteries (ASSBs) \cite{famprikis2019fundamentals}. These next-generation electrochemical energy storage systems promise advantages over conventional lithium-ion batteries (LIBs), including enhanced safety due to the non-flammable nature of the SEs, as well as the potential for higher energy and power densities \cite{zhao2020designing, janek2023challenges}. The shift to ASSBs is considered a realistic advancement, with theoretical calculations suggesting a potential specific energy of up to $393 \text{ Wh } \text{kg}^{-1}$ and an energy density of $1,143 \text{ Wh } \text{L}^{-1}$ \cite{janek2023challenges}. However, the core challenge hindering widespread commercial viability is the limited ionic conductivity of many SEs at room temperature (RT), a property that governs charge and discharge rates \cite{zhao2020designing, therrien2025obelix}. While some sulfide-based conductors have achieved ionic conductivities comparable to liquid electrolytes (in the order of $1 \text{ mS } \text{cm}^{-1}$), the discovery of materials with the full suite of required properties, including sufficiently high ionic conductivity, stability against its alkali metal, and suitable mechanical properties, requires a dramatic shift from traditional trial-and-error methods \cite{therrien2025obelix, zhao2020designing, yu2025data}. The high complexity of the materials space makes the exploration and screening of high-performance SEs difficult, as conventional experimental methods and theoretical computations for exhaustive material search are time- and resource-consuming \cite{yang2024dynamic, mishra2023exploring}.
+Interest in solid-electrolytes (SEs) dates back approximately 200 years to the work of Michael Faraday, with a period of rapid development in the 1960s \cite{zhao2020designing}. In the last decade, SEs have re-emerged as a materials class of notable scientific and commercial interest, standing at the heart of all-solid-state batteries (ASSBs) \cite{famprikis2019fundamentals}. These emerging electrochemical energy storage systems promise advantages over conventional lithium-ion batteries (LIBs), including enhanced safety due to the non-flammable nature of the SEs, as well as the potential for higher energy and power densities \cite{zhao2020designing, janek2023challenges}. The shift to ASSBs is considered a realistic advancement, with theoretical calculations suggesting a potential specific energy of up to $393 \text{ Wh } \text{kg}^{-1}$ and an energy density of $1,143 \text{ Wh } \text{L}^{-1}$ \cite{janek2023challenges}. However, the core challenge hindering widespread commercial viability is the limited ionic conductivity of many SEs at room temperature (RT), a property that governs charge and discharge rates \cite{zhao2020designing, therrien2025obelix}. While some sulfide-based conductors have achieved ionic conductivities comparable to liquid electrolytes (in the order of $1 \text{ mS } \text{cm}^{-1}$), the discovery of materials with the full suite of required properties, including sufficiently high ionic conductivity, stability against its alkali metal, and suitable mechanical properties, requires a dramatic shift from traditional trial-and-error methods \cite{therrien2025obelix, zhao2020designing, yu2025data}. The high complexity of the materials space makes the exploration and screening of high-performance SEs difficult, as conventional experimental methods and theoretical computations for exhaustive material search are time- and resource-consuming \cite{yang2024dynamic, mishra2023exploring}.
 
-
-The increasing relevance of SEs in literature is matched by a corresponding demand for robust, machine-readable databases capable of supporting high-throughput and data-driven approaches \cite{yang2024dynamic}. The Materials Genome Initiative (MGI), launched in 2011, endorsed the ambition to computationally predict the existence and basic properties of essentially every single material \cite{armiento2020database}. The resulting trend integrates computational materials science with information technology, spurring the development of resources such as the Materials Project \cite{armiento2020database, jain2013commentary}. Databases are a necessary consequence of modern research, which provides large amounts of digital data that require homogeneous and coherent organization for efficient computer processing and new scientific inferences \cite{grazulis2012crystallography}. Despite this shift, the existing data landscape for solid electrolytes is severely fragmented and inconsistent. Data on critical properties like ionic conductivity are scattered across different scientific papers, and materials frequently lack standardized reporting or unique identifiers. A central challenge in data utilization is the ambiguity concerning the material's identity: "Which material is it?". A single stoichiometric formula can represent multiple distinct crystal structures, each with drastically different electrochemical behavior. Furthermore, literature reports often use different conventions or omit essential metadata. This fragmentation and lack of standardization make it exceedingly difficult to combine data from different sources for comprehensive analysis.
-
+The increasing relevance of SEs in literature is matched by a corresponding demand for robust, machine-readable databases capable of supporting high-throughput and data-driven approaches \cite{yang2024dynamic}, enabling standardized workflows and persistent identifiers that will unlock automated querying, cross-database integration, and provenance tracking. The Materials Genome Initiative (MGI), launched in 2011, endorsed the ambition to computationally predict the existence and basic properties of essentially every single material \cite{armiento2020database}. The resulting trend integrates computational materials science with information technology, spurring the development of resources such as the Materials Project \cite{armiento2020database, jain2013commentary}. Databases are a necessary consequence of modern research, which provides large amounts of digital data that require homogeneous and coherent organization for efficient computer processing and new scientific inferences \cite{grazulis2012crystallography}. Despite this shift, the existing data landscape for solid electrolytes is severely fragmented and inconsistent. Data on critical properties like ionic conductivity are scattered across different scientific papers, and materials frequently lack standardized reporting or unique identifiers. A central challenge in data utilization is the ambiguity concerning the material's identity: a single stoichiometric formula can represent multiple distinct crystal structures, each with drastically different electrochemical behavior. Furthermore, literature reports often use different conventions or omit essential metadata. This fragmentation and lack of standardization make it exceedingly difficult to combine data from different sources for comprehensive analysis. More broadly, this reflects a well-recognized challenge in experimental materials data: the lack of standardized, machine-readable identifiers and annotations that enable unambiguous cross-study and cross-database linking.
 
 In the materials science domain, the database ecosystem can be broadly divided into generalist and specific platforms. Generalist databases, such as the widely-used, open-access Materials Project (MP), the Crystallography Open Database (COD), and the proprietary Inorganic Crystal Structure Database (ICSD), offer vast collections of structural and computed material properties \cite{armiento2020database}. The Materials Project, for instance, provides an open dataset generated via high-throughput computing to uncover the properties of inorganic materials \cite{jain2013commentary}, currently holding computed data for more than 70,000 materials and millions of associated properties \cite{ye2018harnessing}, and offering a high-level of uniformity and versatility. However, these generalist platforms often do not prioritize, or systematically include, the key experimentally verified solid-state electrolyte properties, such as ionic conductivity, that are crucial for materials screening. Conversely, specific SSE databases, like the Dynamic Database of Solid-State Electrolytes (DDSE) \cite{yang2024dynamic}, the Liverpool Ionics (LiIon) Dataset \cite{hargreaves2023database}, the OBELiX dataset \cite{therrien2025obelix}, and the dataset from Shon et al. (2023) \cite{shon2023extracting}, focus on gathering these relevant experimental properties. While invaluable, these databases are typically smaller, lack uniformity, and do not provide the wealth of pre-calculated theoretical and structural descriptors found in generalist platforms. For instance, many experimental SSE databases contain limited structural information: the DDSE and Shon and Min databases contain only a qualitative structure description for some materials, the LiIon dataset only includes the structural family, and the Laskowski dataset is limited to space group information, making it difficult to train ML models that require a full crystal description \cite{therrien2025obelix}. A high-level comparison of these database types is provided in Table \ref{tab:database_comparison} below.
 
@@ -277,35 +333,113 @@ In the materials science domain, the database ecosystem can be broadly divided i
     \centering
     \caption{Comparative Overview of Select Material Databases}
     \label{tab:database_comparison}
-    \renewcommand{\arraystretch}{1.3}
-    \begin{tabular}{p{1.9cm}p{2.8cm}p{2cm}p{2.5cm}p{3.6cm}}
+    \begin{tabular}{p{0.95in} p{1.05in} p{0.7in} p{0.95in} p{1.1in} p{1.2in}}
         \toprule
-        \textbf{Database} & \textbf{Primary Content Focus} & \textbf{Access} & \textbf{Source of Data} & \textbf{Key Distinguishing Feature} \\
+        \textbf{Database} & \textbf{Primary Content Focus} & \textbf{Access} & \textbf{Source of Data} & \textbf{Key Distinguishing Feature} & \textbf{Limitation (for SSE conductivity reuse)} \\
         \midrule
-        Materials Project (MP) \cite{ye2018harnessing,armiento2020database} & Inorganic Crystalline Solids and Molecular Species \cite{ spotte2023database} & Open & High-Throughput DFT, Computational & Massive scale and consistent theoretical properties \\
-        ICSD \cite{hellenbrandt2004inorganic, zagorac2019recent} & Inorganic Crystal Structures (since 1913)  & Restricted and Commercial & Experimental & Exhaustive collection of experimental inorganic structures \\
-        Crystallography Open Database (COD) \cite{grazulis2012crystallography} & Small/Medium Unit Cell Crystal Structures & Open & Experimental & Open-access, collaborative repository of 'small molecule' structures \\
-        DDSE \cite{yang2024dynamic, yang2024user} & Inorganic and Polymer SSEs (various cations)  & Restricted  & Experimental and Computational  & Dynamic data mining from experimental reports\\
-        OBELiX \cite{therrien2025obelix} & Lithium Solid-State Electrolytes  & Open  & Expert-Curated Experimental ACIS  & Curated experimental $\sigma_{RT}$ and full crystal structure descriptions (CIFs) \\
-        LiIon Dataset \cite{hargreaves2023database, durdy2023liverpool}  & Lithium-ion Conductors  & Open & Expert-Curated Experimental ACIS  & Focus on Li-ion conductivity measured by a.c. impedance spectroscopy\\
+        Materials Project (MP) \cite{ye2018harnessing,armiento2020database}
+        & Inorganic crystalline solids and Molecular Species \cite{spotte2023database}
+        & Open
+        & High-throughput DFT (Computational)
+        & Massive scale and consistent theoretical properties
+        & Typically lacks curated experimental ionic conductivity and measurement metadata \\
+        \hline
+        ICSD \cite{hellenbrandt2004inorganic,zagorac2019recent}
+        & Inorganic Crystal Structures (since 1913)
+        & Restricted (Commercial)
+        & Experimental
+        & Exhaustive collection of experimental inorganic structures
+        & Paywalled/licensing constraints and limited functional property coverage (\textit{e.g.}, conductivity) \\
+        \hline
+        Crystallography Open Database (COD) \cite{grazulis2012crystallography}
+        & Crystal Structures (small to medium unit cells)
+        & Open
+        & Experimental
+        & Open-access, collaborative structure repository
+        & Structure-centric with sparse/heterogeneous transport-property metadata and identifiers across domains \\
+        \hline
+        DDSE \cite{yang2024dynamic,yang2024user}
+        & Inorganic and Polymer SSEs (various cations)
+        & Restricted
+        & Experimental and Computational
+        & Dynamic data mining from experimental reports
+        & Often incomplete or non-unique structure identifiers and inconsistent reporting across sources \\
+        \hline
+        OBELiX \cite{therrien2025obelix}
+        & Lithium Solid-State Electrolytes
+        & Open
+        & Expert-Curated Experimental ACIS
+        & Curated experimental $\sigma_{RT}$ with crystal structure (CIFs)
+        & Limited scope and uneven availability of full structure/metadata across entries \\
+        \hline
+        LiIon Dataset \cite{hargreaves2023database,durdy2023liverpool}
+        & Lithium-ion Conductors
+        & Open
+        & Expert-Curated Experimental ACIS
+        & Focus on Li-ion conductivity measured by AC impedance spectroscopy
+        & Structural descriptors are frequently coarse (\textit{e.g.}, family-level), limiting polymorph-resolved linking \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-The next frontier of materials discovery is harnessing computational information for automated learning and accelerated discovery \cite{ye2018harnessing}. Machine learning (ML) has emerged as an effective and trustworthy tool for screening new functional materials and predicting desirable properties like ionic conductivity \cite{yang2024dynamic, yu2025data, mishra2023exploring}. The accuracy of an ML model, however, depends critically on the quality and quantity of the training data \cite{hargreaves2023database}. The current fragmented state of SSE data is a major hindrance to developing reliable ML models. First, mislabeled or ambiguous data, where a composition corresponds to different phases or doped variants, is a critical barrier for ML applications, where errors can easily propagate across predictive models. Second, ML models require comprehensive input features that describe not only the composition but also the underlying crystal structure (e.g., lattice parameters, space group, and even atomic positions or partial occupancy) \cite{therrien2025obelix, mishra2023exploring}. While composition-only models are important for screening unexplored chemical space, models built with full structure and composition are generally superior in performance \cite{hargreaves2023database}. The lack of precise structural information labeled with experimental ionic conductivity makes it difficult both to compare experimental values with theoretical predictions and to train high-accuracy ML models \cite{therrien2025obelix}. Third, the manual and expert-driven process required to collect and curate high-quality experimental data is complex and time-consuming, resulting in datasets that are typically very small for ML standards (often fewer than 10,000 entries) \cite{hargreaves2023database}. This low-data regime highlights the necessity for new, densely-featured datasets to inform more sophisticated ML frameworks \cite{therrien2025obelix}.
+This scenario of mislabeled or ambiguous data, where a chemical composition may correspond to different phases or doped variants without addressing its underlying crystal structure (\textit{e.g.} lattice parameters, space group, and even atomic positions or partial occupancy) \cite{therrien2025obelix, mishra2023exploring} ends up undermining data-intensive research that often depends on datasets that are not only large, but also structured, curated, and machine-readable, with explicit identifiers and minimal contextual metadata. Such infrastructure is required for information retrieval, systematic comparison across studies, reproducible meta-analysis, theory-experiment benchmarking, and, most recently, to enable natural-language, query driven access to materials data through retrieval-based AI assistants, leveraging data-driving materials research and supporting large-scale screening, hypothesis generation \cite{ye2018harnessing} while answers still remains traceable to specific records and sources. 
+
+Another emerging use of such curated, machine-readable dataset with unambiguous material identifiers is machine learning (ML) \cite{hargreaves2023database}, that can both be used as a promising tool to accelerate candidate prioritization in high-throughput screening workflows \cite{yang2024dynamic}, but also for property prediction, aiming to learn structure-property relationships and therefore estimate properties that are critical for the device performance - such as ionic conductivity \cite{yu2025data, mishra2023exploring}.
+
+Under this context, the model's ability to capture the relevant variability and generalize within a given materials family tends to be benefited by providing higher-fidelity inputs that are mechanistically correlated with ion transport (\textit{e.g.} local coordination environments, diffusion-channel topology, site connectivity, and lattice metrics) \cite{hargreaves2023database}. However, the fundamental, generalist databases that are able to provide such fundamental properties are usually disconnected to the key experimentally verified solid-state electrolyte values of ionic conductivity, diffusion, and other properties that are crucial for materials screening. On another hand, the manual and expert-driven process required to collect and curate high-quality experimental data is complex and time-consuming, resulting in datasets that are typically very small for ML standards (often fewer than 10,000 entries) \cite{hargreaves2023database}, highlighting the necessity for new, densely-featured datasets that systematically links fundamental properties to experimentally measured transport parameters for a well defined, labeled material structure \cite{therrien2025obelix} . 
+
+In this work, we address this gap by harmonizing three open-access datasets of experimentally reported solid-state electrolytes (OBELiX, LiIon, and the Shon et al. (2023) \cite{shon2023extracting}) within a large-scale identification workflow that links experimental transport properties to standardized structural and theoretical descriptors from the Materials Project. Beyond resolving which specific material each record refers to, this linkage enables the systematic reuse of high-quality computed descriptors alongside experimentally measured performance. To explicitly capture uncertainty arising from polymorphism, doping, and inconsistent reporting, we introduce a tier system that quantifies the reliability of formula-to-structure assignments. The resulting resource supports both broad exploratory analyses and high-confidence subsets tailored to downstream tasks such as benchmarking, model development, and screening.
+
+Finally, we develop and assess a retrieval-augmented generation (RAG) interface on top of the unified database to enable evidence-grounded, natural-language querying of the curated records. The interface is designed to surface and summarize results directly from retrieved database entries, preserving traceability to specific records and sources. By using representative SSE queries, we show that this approach can efficiently retrieve chemically coherent subsets and produce numerically consistent summaries, while also exposing practical limitations such as the need to explicitly define project-specific labels (\textit{e.g.}, tier semantics) to avoid misinterpretation. 
+
+\section{Data Processing and Cleaning}
+
+The methodology for constructing the harmonized solid-state electrolyte (SSE) database proceeds in two sequential stages: (i) the unification of heterogeneous experimental sources into a common schema, and (ii) the systematic cleaning and normalization of the resulting entries. A high-level overview of this pipeline is provided as pseudocode in Algorithm \ref{alg:harmonization}, serving as a concise reference for the detailed description that follows.
+
+\begin{algorithm}
+\caption{SSE Database Harmonization and Cleaning}
+\label{alg:harmonization}
+
+\tcp{Stage 1: Harmonization}
+\ForEach{database $\in$ \{OBELiX, Liverpool\_Ionics, Shon\_2023\}}{
+    \ForEach{entry in database}{
+        Map entry to unified schema (Specific ID, Conductivity, DOI, Temperature, Space Group, CIF, ICSD Link)
+    }
+}
+
+\tcp{Stage 2: Space Group Inference}
+\ForEach{entry with missing space group}{
+    \eIf{entry is amorphous}{
+        Exclude from Materials Project matching
+    }{
+        Infer candidate space group(s) from family cluster
+    }
+}
+
+\tcp{Stage 3: Formula Cleaning}
+\ForEach{entry}{
+    \If{formula is undefined or too generic}{Exclude entry}
+}
+
+\tcp{Stage 4: Conductivity Normalization}
+\ForEach{remaining entry}{
+    \If{conductivity is a range or has notation errors}{
+        Parse and convert to single Float64 value via logarithmic average
+    }
+}
+\end{algorithm}
+
+The first step of the proposed methodology is to harmonize the experimental solid-state electrolyte (SSE) databases (\textit{i.e.} OBELiX \cite{therrien2025obelix}, the Liverpool Ionics Dataset \cite{durdy2023liverpool, hargreaves2023database} and the dataset from Shon et al. (2023) \cite{shon2023extracting}). This mapping step consisted of parsing the original tables (CSV/JSON) and, when required, extracting values from accompanying metadata fields so that all entries can be treated uniformly in downstream identification and matching. 
+In order to preserve provenance, each raw entry is mapped onto a common schema composed by seven fields: (1) a source-specific identifier ("Specific ID") to maintain traceability to the originating database, (2) ionic conductivity, (3) the DOI of the primary reference, (4) measurement temperature, (5) the reported space group when available, (6) the crystal structure file (CIF) or the minimal structural information required to generate it, and (7) any pre-existing link to a generalist identifier (ICSD), when the source database already provides one. The “Specific ID” was constructed using the format [XXX]–[Original ID], where [XXX] is a three-letter prefix denoting the source database (e.g., OBX, LIV, ACS) and [Original ID] is the identifier used in that database. For instance, the OBELiX entry with identifier "\textit{ywe}" was assigned the Specific ID "OBX–ywe". This convention ensures globally unique identifiers across merged datasets while preserving traceability to the originating source. All temperature values were standardized to °C. When temperature or structural descriptors were unavailable, the corresponding fields were recorded as missing values and addressed during subsequent cleaning and matching steps.
+
+Given the frequent absence of a definitive space group in the experimental databases, \textit{i.e.} item (5) from the harmonized seven-property structure, other supplementary information such as family clusters (\textit{e.g.}, Garnet, Perovskite, NASICON) were taken into consideration to infer the most probable space group (SG) or a manageable subgroup of possibilities according to established crystallographic knowledge for each structural family. For instance, materials identified as belonging to the high-symmetry Garnet family were primarily assumed to possess the space group $Ia\bar{3}d (230)$, while the NASICON family allowed for a defined range of SGs, including $R\bar{3}c (167)$, $R\bar{3} (148)$, or $C2/c (15)$, which served as crucial filtering criteria in the subsequent matching phase. This structural inference was only applied to presumed crystalline materials; entries categorized as "Glass" or "Glass-Ceramic," which are amorphous, were noted as not having a presence in the crystalline-focused Materials Project and were consequently excluded from the MP matching phase. The full set of assumptions regarding family clusters and their likely space groups is summarized in Table \ref{tab:family_clusters_sg}.
 
 
-In this work, the developers address this fundamental challenge by harmonizing three open-access datasets of experimentally reported solid-state electrolytes (OBELiX, LiIon, and the Shon et al. (2023) \cite{shon2023extracting}) against the rigorously defined entries of the Materials Project. This process establishes the crucial, unambiguous link between experimental performance data and high-quality, standardized structural and theoretical descriptors. The work's approach involved picking up three of the most relevant Specific Databases and using the properties available in each one to link them to specific entries (IDs) of Material Project. The rationale was not only to know which exact material the specific databases were addressing but also to bridge it with so many relevant, theoretical (calculated through MD or DFT) properties from Materials Project. A scoring system was applied to quantify the reliability of the formula-to-structure matches. By providing a versatile, uniform, and experimentally verified database, this work is expected to unlock several possibilities of work that were restricted due to the lack of relevant SSE properties in the Generalist Databases or lack of standardization in the Specific Databases. The unified framework enables researchers to dynamically select high-confidence or broad datasets, tailored to different ML tasks such as training, validation, or benchmarking.
+%The technical construction of the harmonized solid-state electrolyte (SSE) database began with a bottom-up approach, necessitating the meticulous cleaning and standardization of data derived exclusively from open-access source databases. These sources included Materials Project (MP) \cite{jain2013commentary}, OBELiX \cite{therrien2025obelix}, the Liverpool Ionics Dataset \cite{durdy2023liverpool, hargreaves2023database}  and the specialized dataset from Shon et al. (2023) \cite{shon2023extracting}. This process involved the critical first step of mapping all raw entries to a uniform data structure defined by seven key properties. For each entry, the "Specific ID" was extracted to maintain traceability to the source database, alongside the experimentally measured "Conductivity" value and the corresponding "DOI" of the original publication. Structural details were recorded via the reported "Space Group" and any provided ".CIF File" (or sufficient information to generate it), which represents the material's geometry. Finally, the "Temperature" at which the measurement occurred and any existing "Generalist ID" (where a source database already established a direct link to a general database ID) were collected. If a specific property was not provided by the source database, the corresponding field was initially left blank.
 
+%The subsequent phase addressed the standardization of structural information, a necessity given the frequent absence of a definitive space group in the experimental databases, which would otherwise drastically reduce the capacity for unique material identification. To circumvent this, the methodology leveraged supplementary information, specifically the material's Family Cluster (e.g., Garnet, Perovskite, or NASICON type) when available. 
 
-
-\section{Data Process and Cleaning}
-
-
-The technical construction of the harmonized solid-state electrolyte (SSE) database began with a bottom-up approach, necessitating the meticulous cleaning and standardization of data derived exclusively from open-access source databases. These sources included Materials Project (MP) \cite{jain2013commentary}, OBELiX \cite{therrien2025obelix}, the Liverpool Ionics Dataset \cite{durdy2023liverpool, hargreaves2023database}  and the specialized dataset from Shon et al. (2023) \cite{shon2023extracting}. This process involved the critical first step of mapping all raw entries to a uniform data structure defined by seven key properties. For each entry, the "Specific ID" was extracted to maintain traceability to the source database, alongside the experimentally measured "Conductivity" value and the corresponding "DOI" of the original publication. Structural details were recorded via the reported "Space Group" and any provided ".CIF File" (or sufficient information to generate it), which represents the material's geometry. Finally, the "Temperature" at which the measurement occurred and any existing "Generalist ID" (where a source database already established a direct link to a general database ID) were collected. If a specific property was not provided by the source database, the corresponding field was initially left blank.
-
-
-The subsequent phase addressed the standardization of structural information, a necessity given the frequent absence of a definitive space group in the experimental databases, which would otherwise drastically reduce the capacity for unique material identification. To circumvent this, the methodology leveraged supplementary information, specifically the material's Family Cluster (e.g., Garnet, Perovskite, or NASICON type) when available. By relying on established crystallographic knowledge for each structural family, it was possible to infer the most probable space group (SG) or a manageable subgroup of possibilities. For instance, materials identified as belonging to the high-symmetry Garnet family were primarily assumed to possess the space group $Ia\bar{3}d (230)$, while the NASICON family allowed for a defined range of SGs, including $R\bar{3}c (167)$, $R\bar{3} (148)$, or $C2/c (15)$, which served as crucial filtering criteria in the subsequent matching phase. This structural inference was only applied to presumed crystalline materials; entries categorized as "Glass" or "Glass-Ceramic," which are amorphous, were noted as not having a presence in the crystalline-focused Materials Project and were consequently excluded from the MP matching phase. The full set of assumptions regarding family clusters and their likely space groups is summarized in Table \ref{tab:family_clusters_sg}.
+%By relying on established crystallographic knowledge for each structural family, it was possible to infer the most probable space group (SG) or a manageable subgroup of possibilities. For instance, materials identified as belonging to the high-symmetry Garnet family were primarily assumed to possess the space group $Ia\bar{3}d (230)$, while the NASICON family allowed for a defined range of SGs, including $R\bar{3}c (167)$, $R\bar{3} (148)$, or $C2/c (15)$, which served as crucial filtering criteria in the subsequent matching phase. This structural inference was only applied to presumed crystalline materials; entries categorized as "Glass" or "Glass-Ceramic," which are amorphous, were noted as not having a presence in the crystalline-focused Materials Project and were consequently excluded from the MP matching phase. The full set of assumptions regarding family clusters and their likely space groups is summarized in Table \ref{tab:family_clusters_sg}.
 
 \begin{table}[htbp]
     \centering
@@ -334,11 +468,7 @@ The subsequent phase addressed the standardization of structural information, a 
     \end{tabular}
 \end{table}
 
-
-The second core stage of cleaning addressed internal inconsistencies and format errors within the raw data columns, with primary focus on the chemical formula and the conductivity values. To ensure that the composition was deterministically identifiable regardless of the source database’s input ordering (e.g., $Li_{6}La_{2}CaNb_{2}O_{12}$ versus $Li_{6}CaLa_{2}Nb_{2}O_{12}$), the Python Materials Genomics (pymatgen) library \cite{ong2013python} was integrated into the pipeline. Specifically, the pipeline invoked the normalize\_formula function to instantiate a pymatgen.core.Composition object and emit its reduced\_formula, guaranteeing a deterministic, alphabetized stoichiometry (e.g., $CaLa_{2}Li_{6}Nb_{2}O_{12}$). Entries that lacked a proper chemical formula, such as those only named "Polyethylene oxide" or generalized names like "NASICON," were classified as Underdefined Formulae and not considered. This exclusion was critical because while a "classic" formula exists for NASICON ($\text{Na}_{1+x}\text{Zr}_2\text{Si}_x\text{P}_{3-x}\text{O}_{12}$), the term often refers to numerous doped variants in literature, and without further verification, automated matching is unreliable.
-
-
-Finally, the integrity of the crucial Conductivity value required extensive normalization due to highly inconsistent reporting styles. Several string-based values and notational errors had to be programmatically converted to a unified numerical form. Simple errors, such as a leading dash in cases like $-10^{-10}$, were resolved by removing the dash and interpreting the value as $10^{-10}$. Entries reported as strings (e.g., "$1.0 \times 10^{-7}$") were converted to a float type. More intricate processing was required for values representing ranges or averages: when an entry provided multiple conductivity values as a series or range (e.g., "2.6 $\times 10^{-3}$ and 1.4 $\times 10^{-3}$" or "0.154 to 0.045"), the logarithmic average of the endpoints was computed to generate a single representative value. In cases where only a maximum bound was given (e.g., "to $1.8 \times 10^{-4}$"), that value was adopted directly. Furthermore, noisy or garbled entries, such as "$10^{-5}-1 \times 10^{-6}$" (which required manual DOI checking to confirm the authors intended "$10^{-5} \sim 10^{-6}$"), were resolved by calculating the logarithmic average. This meticulous, multi-stage cleaning and normalization process, schematically summarized in Figure \ref{fig:datacleaning}, was essential to ensure that every remaining entry possessed a verifiable composition and a singular, standardized numerical value for ionic conductivity, making the data fit for high-throughput matching and predictive modeling.
+The second stage of cleaning addressed internal inconsistencies and format errors within the raw data columns, with primary focus on the chemical formula and the conductivity values. Entries that lacked a proper chemical formula, such as those only named "Polyethylene oxide" or generalized names like "NASICON," were classified as Underdefined Formulae and not considered. This exclusion was critical because while a "classic" formula exists for NASICON ($\text{Na}_{1+x}\text{Zr}_2\text{Si}_x\text{P}_{3-x}\text{O}_{12}$), the term often refers to numerous doped variants in literature, and without further verification, automated matching is unreliable. Similarly, highly inconsistent reporting styles for conductivity values were identified and addressed. String-based values had to be programmatically converted to a unified numerical form (\textit{i.e.} \textit{Float64}). Simple notational errors, such as a leading dash in cases like $-10^{-10}$, were resolved by removing the dash and interpreting the value as $10^{-10}$. Entries reported with operators as strings (\textit{e.g.}, "$1.0 \times 10^{-7}$") were replaced by the numerical multiplicative operator and also converted to a \textit{Float64} type. For values representing ranges or averages (e.g., "2.6 $\times 10^{-3}$ and 1.4 $\times 10^{-3}$" or "0.154 to 0.045"), the logarithmic average of the endpoints was computed to generate a single representative value. In cases where only a maximum bound was given (\textit{e.g.}, "to $1.8 \times 10^{-4}$"), that value was adopted directly. Furthermore, noisy or garbled entries, such as "$10^{-5}-1 \times 10^{-6}$" (80 cases which required manual DOI checking to confirm the authors intended "$10^{-5} \sim 10^{-6}$"), were resolved by calculating the logarithmic average. The goal of this multi-stage cleaning and normalization process, schematically summarized in Figure \ref{fig:datacleaning}, was to ensure that every remaining entry possessed a verifiable composition and a singular, standardized numerical value for ionic conductivity, making the data fit for high-throughput matching and predictive modeling.
 
 \begin{figure*}
     \centering
@@ -349,36 +479,7 @@ Finally, the integrity of the crucial Conductivity value required extensive norm
 
 \section{Matching Methodology and Tiers}
 
-A hierarchical, multi-stage matching algorithm was developed to cross-reference entries from the Specific Databases with the Materials Project database. This process assigns a tiered evidence model, combining database identifiers, crystal symmetry, and structural isomorphism.
-
-The primary matching criterion employed the presence of a Generalistic ID, such as the Inorganic Crystal Structure Database (ICSD) accession number as a direct provenance link. For each entry, the corresponding identifier was queried against the Materials Project database using the MaterialsProjectAPI.by\textunderscore icsd routine. This function interrogates the MP summary documentation and compares the database\textunderscore IDs.icsd field of each returned document against the source identifier.
-An exact numerical match was considered a definitive link between the datasets. 
-
-For entries lacking a successful match, a secondary step was implemented where candidate MP structures were retrieved via MaterialsProjectAPI.structures\textunderscore for and compared directly against the entry's CIF file. Both structures were parsed into pymatgen.Structure objects and evaluated using the StructureMatcher algorithm, also part of the pymatgen library.
-A tiered tolerance-based approach was implemented to assess isomorphism. The StructureMatcher was applied (site tolerance ltol = 0.2, stoichiometric tolerance stol = 0.3, and angle\textunderscore tol = 5°). This stage provided auditable crystallographic equivalence independent of symmetry labeling, with the specific CIF path recorded as provenance.
-This hierarchical methodology thus integrates explicit database identifiers, symmetry-aware compositional filters, and geometry-based confirmation to ensure each entry is matched to Materials Project records with explainable evidence.
-
-Finally, as a tertiary step, the chemical composition of each entry was canonicalized to its reduced formula using the pymatgen.Composition().reduced\textunderscore formula method from the pymatgen library. This reduced formula was subsequently used to query the MP database via the MaterialsProjectAPI.by\textunderscore formula function, retrieving all MP summary documents sharing the identical reduced formula. 
-For this new pool of candidates, space-group symbols from both the MP candidate and the entry of the Specific Database were normalized (\textit{e.g.}, whitespace removal, hyphen standardization). This way, it was possible to find candidates with not only share an exact identical reduced formula, but also an exact match in its normalized space-group symbol or number.
-If no exact space-group match was found, a broader comparison at the crystal system level was performed. The lattice system (\textit{e.g.}, triclinic, monoclinic, orthorhombic) for the entry was inferred from its space-group number using a standard lookup function (crystal\textunderscore system\textunderscore from\textunderscore number), therefore allowing effectively grouping materials within the same crystal family (\textit{e.g.}, P1 and P-1) that may have different space-group assignments.
-
-Finally, after the comparison, every entry that was matched with an mp-id were classified in different tiers based on how rigorous this match occurred. For instance:
-
-\textbf{Tier 0:} Destined to entries that presented a Generalistic ID that could directly lead to an mp-id, or else, that presented a DOI that were related to a specific mp-id. 
-
-\textbf{Tier 1:} Destined to entries that were matched through the .CIF comparison \textit{i.e.} the geometry presented in the Specific Database were correspondent to the geometry presented in the Materials Project Database.
-
-\textbf{Tier 2:} Destined to entries that were matched through not only an exact chemical formula, but also is registered in the Materials Project with the same Space Group according to Table \ref{tab:family_clusters_sg}.
-
-\textbf{Tier 3:} Destined to entries with an exact chemical formula and, even though the space group was different to the one registered in the Materials Project, both of them would share the same lattice system \textit{e.g.} monoclinic.
-
-\textbf{Tier 4:} Destined to entries with an exact chemical formula, but the space group is not even in the same lattice system as the entry in Materials Project.
-
-\begin{itemize}
-    \item Luana's version
-\end{itemize}
-
-The unification of the cleaned experimental dataset with the Materials Project (MP) records was executed through a hierarchical, multi-stage matching algorithm, outlined in Figure \ref{fig:hierarch}, which systematically cross-referenced entries from the specific open-access sources with the comprehensive MP database. This process was designed to assign a tiered evidence model, combining database identifiers, crystal symmetry, and structural isomorphism.
+To unify the cleaned experimental records with Materials Project (MP) entries, we define a hierarchical matching methodology composed of successive stages of increasing generality (Figure \ref{fig:hierarch}). The goal is not only to assign an MP identifier (MP-ID) to each experimental entry, but also to explicitly document which type of evidence supports that linkage. For this reason, each match is labeled with a \textit{Tier}, where tiers represent an evidence hierarchy based on the information used to establish correspondence: direct identifier provenance, structure-level agreement, or symmetry-constrained formula matching. Lower-numbered tiers correspond to stronger, more direct evidence (\textit{e.g.}, database cross-references or crystallographic equivalence), whereas higher-numbered tiers indicate matches supported by progressively weaker constraints and therefore higher ambiguity. This tier annotation enables downstream users to select subsets appropriate to their task - for example, prioritizing strict tiers for benchmarking and model training, or including broader tiers for exploratory screening and hypothesis generation. Tiers should therefore be interpreted as an evidence ranking rather than a guarantee of uniqueness, particularly for compositions with multiple polymorphs.
 
 \begin{figure*}
     \centering
@@ -387,49 +488,389 @@ The unification of the cleaned experimental dataset with the Materials Project (
     \label{fig:hierarch}
 \end{figure*}
 
-The algorithm's execution begins with the Direct Identifier Provenance (Tier 0). This primary matching criterion employs the presence of a Generalistic ID, such as the Inorganic Crystal Structure Database (ICSD) accession number, as a direct provenance link. For each entry, the corresponding identifier is programmatically queried against the Materials Project using the specific routine, MaterialsProjectAPI.by\_icsd. This function interrogates the MP summary documentation and compares the database\_IDs.icsd field of each returned document against the source identifier. An exact numerical match is considered a definitive link between the datasets. Tier 0 is consequently destined for entries that presented a Generalistic ID that could directly lead to an MP-ID, or else, that presented a DOI that was related to a specific MP-ID.
+Tier~0 (Direct Identifier Provenance) attempts to establish an MP linkage using explicit, source-provided cross-references that can be resolved directly in MP, prior to any structure- or symmetry-based inference. Two identifier routes are supported. First, when an ICSD accession number is available, the entry is queried using \texttt{MaterialsProjectAPI.by\_icsd}, and a Tier~0 match is assigned only if the ICSD value reported by the source record exactly coincides with an \texttt{database\_IDs.icsd} entry returned by MP, yielding a direct mapping to an MP material identifier (MP-ID). Second, when a DOI is available, we query MP using \texttt{mpr.doi.search()} to retrieve MP entries associated with that publication; a Tier~0 match is assigned only when the DOI resolves to an unambiguous MP-ID (\textit{i.e.}, a single candidate after query and filtering), while non-unique DOI returns are treated as insufficient for direct provenance and are forwarded to subsequent tiers. If neither identifier route yields an unambiguous linkage, the record proceeds to the structure- and symmetry-based stages (Tiers~1-4). In the experimental sources considered here, this identifier-based stage did not yield successful matches; it is included for completeness and generality of the methodology, and the effective linkage is therefore achieved by the subsequent tiers.
 
-For entries failing the provenance check, the second stage implements a Geometric Isomorphism Test (Tier 1). This requires the availability of the entry's Crystal Information File (CIF). Candidate MP structures are retrieved via the MaterialsProjectAPI.structures\_for command and compared directly against the experimental entry's CIF file. Both structures are parsed into pymatgen.Structure objects and rigorously evaluated using the StructureMatcher algorithm, also part of the Pymatgen library. A tiered tolerance-based approach is utilized to assess isomorphism: the StructureMatcher is applied with a site tolerance ($ltol$) of $0.2$, a stoichiometric tolerance ($stol$) of $0.3$, and an angle tolerance ($angle\_tol$) of $5^{\circ}$. This stage provides auditable crystallographic equivalence independent of symmetry labeling, with the specific CIF path recorded as provenance. Tier 1 is destined for entries that were matched through this CIF comparison, meaning the geometry presented in the specific database was correspondent to the geometry presented in the Materials Project Database.
+%The algorithm's execution begins with the Direct Identifier Provenance (Tier 0). This primary matching criterion employs the presence of the Inorganic Crystal Structure Database (ICSD) accession number, as a direct provenance link. For each entry, the corresponding identifier is programmatically queried against the Materials Project using the specific routine, MaterialsProjectAPI.by\_icsd. This function interrogates the MP summary documentation and compares the database\_IDs.icsd field of each returned document against the source identifier. An exact numerical match is considered a definitive link between the datasets. Tier 0 is consequently destined for entries that presented a ICSD that could directly lead to an MP-ID, or else, that presented a DOI that was related to a specific MP-ID.
 
-The final and broadest stage involves Symmetry-Aware Formula Matching (Tiers 2, 3, 4). This stage begins by canonicalizing the chemical composition of each entry to its reduced formula using the pymatgen.Composition().reduced\_formula method. This formula is used to query all MP records via the MaterialsProjectAPI.by\_formula function, creating a pool of compositionally identical candidates. This pool is filtered using two sequential symmetry criteria:
+Tier~1 (Geometric Isomorphism) is applied to records that do not yield an unambiguous identifier-based linkage in Tier~0 but provide crystallographic structure information in the form of a CIF. This tier is evaluated after Tier~0 because structure matching necessarily relies on numerical tolerances (\textit{e.g.}, small variations in refined atomic positions, lattice parameters, or reported occupancies across sources), whereas identifier provenance provides a discrete and exact linkage when available. For Tier~1, candidate MP structures associated with the entry are retrieved using \texttt{MaterialsProjectAPI.structures\_for} and compared against the experimental CIF by converting both to \texttt{pymatgen.Structure} objects and evaluating geometric equivalence with \texttt{StructureMatcher}. Unless otherwise stated, we use $ltol=0.2$, $stol=0.3$, and $angle\_tol=5^{\circ}$, such that two structures are considered isomorphic when they match within these tolerances. When a match is found, the entry is assigned to Tier~1 and the corresponding CIF reference is retained as provenance, providing structure-level evidence of correspondence that is independent of space-group labeling.
 
-\begin{enumerate}
-    \item Exact Space Group Match (Tier 2): Space-group symbols from both the MP candidate and the experimental entry (including the inferred SGs from Table 2) are normalized via whitespace removal and hyphen standardization. An exact match between the normalized symbols signifies high probability of structural correspondence, assigning the entry to Tier 2.
-    \item Lattice System Match (Tier 3): If no exact space-group match was found, a broader comparison at the crystal system level was performed. The lattice system (e.g., triclinic, monoclinic, orthorhombic) for the entry was inferred from its space-group number using a standard lookup function (crystal\_system\_from\_number). This allows effectively grouping materials within the same crystal family (e.g., $P1$ and $P\bar{1}$) that may have different space-group assignments. If the MP candidate shares this same lattice system, the entry is assigned Tier 3. Tier 3 is destined for entries with an exact chemical formula where, even though the space group was different, both the experimental entry and the MP record share the same lattice system (e.g., monoclinic).
-\end{enumerate}
+%For entries failing the Tier~0, the second stage implements a Geometric Isomorphism Test (Tier 1). This requires the availability of the entry's Crystal Information File (CIF). Candidate MP structures are retrieved via the MaterialsProjectAPI.structures\_for command and compared directly against the experimental entry's CIF file. Both structures are parsed into pymatgen.Structure objects and rigorously evaluated using the StructureMatcher algorithm, also part of the Pymatgen library. A tiered tolerance-based approach is utilized to assess isomorphism: the StructureMatcher is applied with a site tolerance ($ltol$) of $0.2$, a stoichiometric tolerance ($stol$) of $0.3$, and an angle tolerance ($angle\_tol$) of $5^{\circ}$. This stage provides auditable crystallographic equivalence independent of symmetry labeling, with the specific CIF path recorded as provenance. Tier 1 is destined for entries that were matched through this CIF comparison, meaning the geometry presented in the specific database was correspondent to the geometry presented in the Materials Project Database.
 
+%To ensure that the composition was deterministically identifiable regardless of the source database’s input ordering (\textit{e.g.}, \ce{Li6La2CaNb2O12} vs. \ce{Li6CaLa2Nb2O12}, the Python Materials Genomics (pymatgen) library \cite{ong2013python} was integrated into the pipeline. Specifically, the pipeline invoked the normalize\_formula function to instantiate a pymatgen.core.Composition object and emit its reduced\_formula, guaranteeing a deterministic, alphabetized stoichiometry (\textit{e.g.}, \ce{CaLa2Li6Nb2O12}).
 
-The remaining entries, which possess an exact chemical formula but whose space group is not even in the same lattice system as the entry in Materials Project, are classified into the lowest confidence level. Tier 4 is destined for these entries. This hierarchical methodology thus integrates explicit database identifiers, symmetry-aware compositional filters, and geometry-based confirmation to ensure each entry is matched to Materials Project records with explainable evidence.
+The final stage performs \emph{formula-based matching with symmetry filtering} (Tiers~2--4) for records that do not yield an unambiguous identifier-based linkage (Tier~0) and for which structure-level comparison is not possible (Tier~1; \textit{e.g.}, missing CIF). Following the evidence-tier definition introduced above, these tiers assign MP candidates using progressively weaker constraints based on composition and symmetry. First, each composition is parsed into a \texttt{pymatgen.core.Composition} object and converted to a canonical reduced representation using \texttt{Composition(formula).reduced\_formula} \cite{ong2013python}. The reduced formula is then used to retrieve all compositionally identical MP candidates via \texttt{MaterialsProjectAPI.by\_formula}, generating a candidate pool that is subsequently filtered using symmetry information (including inferred space groups from Table~\ref{tab:family_clusters_sg} when applicable).
+
+Tier~2 is assigned when the experimental entry and at least one MP candidate share the same space-group symbol after normalization (whitespace removal and hyphen standardization). This criterion applies a strict symmetry constraint beyond composition and therefore provides stronger match evidence than the subsequent tiers. If no exact space-group agreement is found, a broader symmetry constraint is applied at the crystal-system level. The crystal system (\textit{e.g}., triclinic, monoclinic, orthorhombic) is inferred from the space-group number using a standard lookup routine (\textit{e.g.}, \texttt{crystal\_system\_from\_number}). Tier~3 is assigned when the experimental entry and an MP candidate share the same crystal system, capturing cases where space-group reporting differs while remaining within the same lattice family.
+
+Finally, entries that yield compositionally identical MP candidates (\textit{i.e.} same chemical formula) but for which the available symmetry information cannot be used to support the linkage (\textit{e.g.}, missing, inconsistent, or discordant even at the crystal-system level) are assigned Tier~4. This tier represents the least constrained linkage within the hierarchy and therefore the highest ambiguity among matches produced by the formula-based stage. This hierarchical methodology therefore combines identifier provenance, geometry-based validation, and symmetry-constrained compositional search to assign MP linkages with explicitly stated match evidence, enabling users to select subsets aligned with their tolerance for ambiguity in downstream analyses.
+
+%The final and broadest stage involves Symmetry-Aware Formula Matching (Tiers 2, 3, 4). This stage begins by canonicalizing the chemical composition of each entry to its reduced formula using the pymatgen.Composition().reduced\_formula method. This formula is used to query all MP records via the MaterialsProjectAPI.by\_formula function, creating a pool of compositionally identical candidates. This pool is filtered using two sequential symmetry criteria:
+
+%\begin{enumerate}
+    %\item Exact Space Group Match (Tier 2): Space-group symbols from both the MP candidate and the experimental entry (including the inferred SGs from Table 2) are normalized via whitespace removal and hyphen standardization. An exact match between the normalized symbols signifies high probability of structural correspondence, assigning the entry to Tier 2.
+    %\item Lattice System Match (Tier 3): If no exact space-group match was found, a broader comparison at the crystal system level was performed. The lattice system (e.g., triclinic, monoclinic, orthorhombic) for the entry was inferred from its space-group number using a standard lookup function (crystal\_system\_from\_number). This allows effectively grouping materials within the same crystal family (e.g., $P1$ and $P\bar{1}$) that may have different space-group assignments. If the MP candidate shares this same lattice system, the entry is assigned Tier 3. Tier 3 is destined for entries with an exact chemical formula where, even though the space group was different, both the experimental entry and the MP record share the same lattice system (e.g., monoclinic).
+%\end{enumerate}
+
+%The remaining entries, which possess an exact chemical formula but whose space group is not even in the same lattice system as the entry in Materials Project, are classified into the lowest confidence level. Tier 4 is destined for these entries. This hierarchical methodology thus integrates explicit database identifiers, symmetry-aware compositional filters, and geometry-based confirmation to ensure each entry is matched to Materials Project records with explainable evidence.
 
 \section{Dataset Overview and Statistics}
-The idea here is Igor presenting several graphs to facilitate a reader to understand exactly how our Ultimate Database ended up being.
-Some ideas:
-\begin{itemize}
-    \item \textbf{Tier Distribution:} Pie Chart showing fraction of entries in each Tier; Stacked bar showing which Specific DB contributes more for each tier.
-    \item \textbf{Property Coverage:} Histogram of Temperatures Covered; Conductivity Distribution for Each Family Cluster; 
-    \item \textbf{Cluster Frequency:} Pie chart per families; Pie chart per Lattice Systems; Heatmap of Element Occurrence; 
-\end{itemize}
+This section summarizes the composition and coverage of the MP-linked corpus obtained by harmonizing OBELiX \cite{therrien2025obelix}, the Liverpool Ionics Dataset \cite{durdy2023liverpool, hargreaves2023database} and the dataset from Shon \textit{et al.} (2023) \cite{shon2023extracting} and applying the matching workflow described above. Each retained conductivity record is linked to an MP material identifier (MP-ID) and annotated with an evidence tier that encodes the strength of the formula-to-structure linkage, enabling users to select stricter or broader subsets depending on their tolerance for ambiguity.
 
-\section{Case Study}
-To demonstrate practical accessibility of the unified database, we deployed a local Retrieval-Augmented Generation (RAG) service that allows natural-language queries against the CSV dataset. This section illustrates representative examples and evaluates whether retrieved answers preserve factual provenance.
+The statistics reported below quantify dataset scope and expose where experimental coverage is dense, biased, or sparse across sources, structural families, conductivity ranges, and temperature metadata. These summaries provide practical guidance on what the current release can support - for instance, constructing higher-evidence subsets (T1--T3) for structure-resolved analyses and for downstream benchmarking or model development - and where limitations remain (\textit{e.g.}, underrepresented families, sparse per-material replication, and missing measurement metadata), which can constrain meta-analysis and temperature-dependent interpretation as discussed in the following sections.
++
+%The dataset analyzed in this section is the final, harmonized product of integrating three open experimental SSE resources (OBELiX, LiIon, and Shon et al.) into a single MP-linked corpus. Starting from these sources, each experimental conductivity entry was standardized and then matched to a unique Materials Project structure; measurements that could not be mapped to a defensible MP-ID were excluded. As a result, every retained entry is unambiguously associated with an MP-ID, enabling direct connection between experimental performance and the rich structural/theoretical descriptor space of MP. To preserve transparency about match reliability, each entry is labeled with a tier reflecting confidence in the formula-to-structure linkage, allowing users to trade breadth for certainty depending on task. 
+
+%The statistics below therefore serve two roles: to quantify the scope and composition of the merged MP-linked dataset, and to reveal where current experimental coverage is dense, biased, or sparse across sources, families, conductivity regimes, and temperature metadata. This provides a reality-based map of what the dataset supports today (high-confidence benchmarking and structure-aware ML in well-covered regions) while also highlighting the experimental gaps that limit certain analyses and motivate future expansion.
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.9\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figs/DefFig1.png}
+    \end{subfigure}
+    \caption{Entries by source database and matching tier. (a) Number of entries contributed by each source; (b) distribution of entries across matching tiers T1–T4; (c) tier composition within each source.}
+    \label{fig:DataSources}
+\end{figure*}
+
+Figure \ref{fig:DataSources} summarizes the composition of the final MP-linked dataset after harmonizing the three experimental sources and applying the tiered matching workflow. Panel (a) reports the contribution of each source to the merged corpus, which is numerically dominated by the Shon \textit{et al.} dataset (2837 entries), with smaller contributions from OBELiX (138) and LiIon (148). This source imbalance largely reflects the original dataset sizes and motivates the explicit use of evidence tiers, which allow downstream analyses to separate a smaller, higher-evidence subset from the broader, more ambiguous portion of the merged corpus. 
+
+Panel (b) reports the global distribution of evidence tiers after linkage to Materials Project. Most entries fall into Tier~4 ($\sim$80\%), indicating that for the majority of reported conductivities the available metadata are insufficient to support a uniquely structure-validated MP linkage (\textit{i.e.}, the match is formula-based without symmetry- or geometry-level confirmation). Importantly, the tier annotation prevents this heterogeneity in match evidence from being collapsed into a single ``flat'' dataset. Instead, it separates a smaller, higher-evidence subset (T1--T3, 554 entries) from a broader, less constrained subset (T4, 2569 entries). Users can therefore select stricter or broader data slices depending on their tolerance for ambiguity in the structure assignment and the requirements of the downstream task. 
+
+Panel (c) explains why the global pattern looks this way by resolving tiers per source. OBELiX stands out as the most structurally reliable contributor: nearly half of its entries are Tier 1, and roughly 85\% fall in T1-T3. This reflects OBELiX's richer structural metadata (\textit{e.g.}, CIF-level information), and confirms that when experimental datasets report detailed structure, high-confidence MP linkage is achievable. LiIon plays an intermediate role, contributing mainly T2 and T4 entries, consistent with partial structural labeling. Shon \textit{et al.}, by contrast, provides the overwhelming share of total volume but is heavily skewed to T4 (~88\%), showing that large-scale text-mined conductivity datasets often lack the structural specificity needed for unambiguous database-level identity resolution. Even so, Shon \textit{et al.}'s scale still yields hundreds of high-confidence matches (T2-T3), making it a crucial source for chemical-space coverage.
+
+Thus, Figure \ref{fig:DataSources} illustrates that structure-resolved linkage is achievable when experimental sources report sufficient structural metadata, while large literature-derived corpora typically concentrate in the least constrained tier. The resulting dataset therefore contains two practically distinct regimes: a smaller subset with stronger match evidence (T1--T3; 554 entries) and a larger subset linked primarily at the formula level (T4; 2569 entries; 3123 entries total) ultimately preserving coverage without collapsing entries of different evidence strength into a single undifferentiated corpus.
+
+%Taken together, Figure \ref{fig:DataSources} makes the dataset's logic explicit: high-quality linkage is possible where structural reporting exists, and the tiering system allows the field to benefit from large experimental corpora without pretending they are uniformly reliable. This dual-regime design - 554 entries for controlled-uncertainty tasks, 3123 entries for scale-driven discovery - is a deliberate feature of the dataset and a direct response to how SSE conductivity data is currently published.
+
+Next, we examine the availability and consistency of higher-level structural labels, through the presentation of Figure \ref{fig:QualityBySource}.
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.90\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figs/DefFig2.png}
+    \end{subfigure}
+    \caption{Family assignment coverage in the merged dataset. Left: fraction of entries with/without an assigned structural family for each source. Right: overall share of entries with assigned versus unassigned structural family.}
+    \label{fig:QualityBySource}
+\end{figure*}
+
+Figure \ref{fig:QualityBySource} assesses structural-family labeling in the merged dataset. The left panel reports, for each source, the fraction of entries that arrive with an assigned structural family versus those that do not. OBELiX and LiIon exhibit very high assignment rates (~93\% and 100\% respectively), reflecting strong curation and consistent structural annotation practices. Shon \textit{et al.}, in contrast, shows substantially lower family coverage (~27\% assigned), indicating that large-scale text-mined or literature-aggregated datasets often omit structural-family labels even when conductivity values are present.
+
+The right panel summarizes the consequence of source heterogeneity at the dataset level: roughly one third of entries in the merged dataset include a structural-family label, while about two thirds remain unassigned. This pattern primarily reflects differences in metadata completeness across the source datasets rather than an artifact introduced during harmonization. Since all records lacking a family label in the source were kept as \textit{Unassigned}, the figure therefore represents a practical limitation of the current SSE literature and its downstream datasets: conductivity values are frequently reported without standardized, machine-readable structural context. In turn, the scarcity of reliable structure labels remains a major bottleneck for systematic family-resolved analyses and for building unified experimental corpora at scale. 
+
+%The right panel summarizes the conseqeuence of this source heterogeneity at the dataset level: roughly one third of entries in the merged dataset carry a structural-family label, while about two thirds remain unassigned. This imbalance is not a flaw introduced by the harmonization step; it is a faithful mirror of the current experimental literature, where conductivity is frequently reported without standardized structural context. In other words, the figure quantifies a known bottleneck in data-driven SSE research: the scarcity of machine-readable structure labels is a primary reason why experimental datasets remain hard to unify and exploit at scale.
+
+Importantly, Figure \ref{fig:QualityBySource} also reinforces the value of the MP-linkage workflow. Even though Shon \textit{et al.} contributes the bulk of entries, its lower labeling rate would have left most of those data points structurally "anonymous" in a conventional merge. By linking all retained entries to MP-IDs upstream, the present dataset ensures a unique structural anchor for every conductivity value, regardless of whether the original paper labeled a family. The result is a dataset that preserves broad experimental coverage while enabling structural or family-resolved analysis whenever labels exist - and motivating future work to expand such labels systematically.
+
+Overall, the contrast between the three experimental databases indicates that comprehensive structural labeling is achievable in curated datasets, while the large fraction of unlabeled records in literature-derived collections reflects the broader, well-recognized challenge of standardized annotation and material identification in experimental materials data. 
+
+%As a clean takeaway: high-quality sources prove that comprehensive structural labeling is achievable, while the merged dataset honestly exposes how far the field still is from universal annotation. 
+
+With that context in place, Figure \ref{fig:EntriesPerFamily} turns to the assigned subset and asks the next natural question: \textit{which structural families dominate the experimentally reported landscape once reliable labels exist?}
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.90\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig2b_PieChart_Family.png}
+    \end{subfigure}
+    \caption{Distribution of structural families (assigned entries only). Pie chart showing the relative fraction of each structural family among entries with a structural family label.}
+    \label{fig:EntriesPerFamily}
+\end{figure*}
+
+Figure \ref{fig:EntriesPerFamily} presents the structural-family composition of the assigned entries in the merged dataset. The distribution is strongly concentrated in a handful of well-known SSE families: Garnet (~21.1\%), NASICON-like (19.5\%), and Perovskite (~16.8\%) together account for more than half of the labeled entries. LISICON/Thio-LISICON (~14.5\%) and Argyrodite (~7.8\%) form the next tier of representation. The remaining families - halides, oxide frameworks (other), nitrides, hydrides, and several minor sulfide/borate/glass-ceramic categories - each contribute only a few percent or less. In this context, two takeaways should be highlighted:
+
+First, the family spectrum aligns with the practical research focus of the SSE field. Rather than being skewed toward marginal or rarely studied chemistries, the assigned subset is dominated by structural archetypes that are repeatedly investigated as leading platforms for high ionic conductivity and practical deployment. This supports the interpretation that the merged dataset captures a representative cross-section of the concemporary inorganic SSE landscape.
+
+Second, the presence of a long tail of less frequent families remains scientifically useful. Although their individual contributions are small, these categories reflect active exploratory directions (\textit{e.g.}, halides, glass-ceramics/LiPON-type systems, anti-perovskites, borate-based salts, and niche sulfide frameworks). Their inclusion broadens the structural and chemical diversity available for downstream analysis and model training, reducing the risk of conclusions that are overly dominated by a small number of flagship families.
+
+A methodological clarification is also important for contextualizing subsequent figures: because Figure \ref{fig:EntriesPerFamily} considers only entries with assigned families, the reported proportions describe the distribution within the structurally characterized subset. This is appropriate for the analysis that follow, since conductivity- and temperature-dependent trends require reliable structural context. In parallel, the unassigned fraction quantified previously (Figure \ref{fig:QualityBySource}) delineates the boundary of what can be interpreted with high confidence.
+
+Overall, Figure \ref{fig:EntriesPerFamily} establishes that the merged dataset is anchored in the dominant SSE families while retaining sufficient coverage of emerging or specialized chemistries to enable a structure-aware, generalizable way to perform statistical and machine-learning studies. 
+
+Next, we move the analysis beyond "where the data came from" and "which structures they cover", to the analysis of how those materials perform. 
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.80\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig3_Histogram_LogConductivity.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.8\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig4a_Ridgeline_Conductivity_Tier.png}
+    \end{subfigure}
+    \caption{Conductivity distributions for the full dataset and by tier. Top: histogram of $\log_{10}(\sigma)$, where $\sigma$ is the ionic conductivity (S cm$^{-1}$). Bottom: ridgeline plots of $\log_{10}(\sigma)$ grouped by matching tier T1–T4.}
+    \label{fig:ConductivityOverall}
+\end{figure*}
+
+Figure \ref{fig:ConductivityOverall} (top) reports the overall distribution of room-temperature ionic conductivity on a logarithmic scale. The histogram spans nearly twenty orders of magnitude, from poorly conducting compositions below $10^{-15}$ S cm$^{-1}$ to rare cases approaching $10^{0}$ S cm$^{-1}$. The bulk of the data lie between roughly $10^{-10}$ and $10^{-3}$ S cm$^{-1}$, with a broad maximum between $10^{-7}$ and $10^{-5}$ S cm$^{-1}$ range. This pattern is consistent with the qualitative picture from the solid-electrolyte literature: most reported compositions are modest ion conductors, while truly "superionic" materials remain relatively scarce. The figure also justified the use of the log$_{10}$ as the primary target variable in subsequent analysis, since the dynamic range is dominated by multiplicative rather than additive variation.
+
+Figure \ref{fig:ConductivityOverall} (bottom) decomposese the same conductivity distribution by matching tier. All four tiers populate similar conductivity regimes, with overlapping peaks centered in the $10^{-8}$ and $10^{-4}$ S cm$^{-1}$ interval. Tier 4, which aggregates entries with the least stringent structure-ID matching, exhibits the broadest distribution and slightly heavier tails at both low and high conductivity, reflecting its larger size and greater structural heterogeneity. In contrast, T1-T3 which rely on progressively stricter structural criteria, show somewhat narrower density profiles, but no systematic shift toward either higher or lower conductivity. Two points follow from this behavior:
+
+First, the tiering scheme is largely orthogonal to the transport property itself: tiers encode the strength of evidence supporting the structure assignment (identifier/structure/symmetry constraints), rather than partitioning entries by ionic conductivity. Consistent with this, the tier-resolved distributions in Figure \ref{fig:ConductivityOverall} show substantial overlap and no systematic shift toward higher or lower conductivity across T1--T4. This is important for downstream use of the database, because it allows users to adjust the strictness of structural linkage (e.g., restricting to T1--T3 for more constrained structure-resolved analyses) without introducing a strong, unintended bias in the conductivity distribution.
+
+%First, the tiering scheme is largely orthogonal to the target property: it encodes confidence in the structural assignment rather than selectively enriching or excluding any particular conductivity window. This is important for downstream ML applications, as it allows users to vary the strictness of the structural linkage (\textit{e.g.}, restricting to T1-T3) without dramatically distorting the conductivity distribution. 
+
+Second, the presence of high-conductivity candidates in all tiers, including T2-T3, indicates that high structural fidelity and attractive transport properties can be obtained simultaneously; the database is not forced to trade data quality for performance outliers. Together, these results support the view that the unified dataset offers both a realistic picture of the SSE conductivity landscape and a controllable handle on structural reliability.
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.90\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig4b_Ridgeline_Conductivity_Family.png}
+    \end{subfigure}
+    \caption{Conductivity distribution by structural family. Ridgeline plots of $\log_{10}(\sigma)$ for each structural family, including an “Unassigned” category.}
+    \label{fig:Ridgeline}
+\end{figure*}
+
+Figure \ref{fig:Ridgeline} deepens this picture by resolving the conductivity landscape along structural families. Each ridge correspond to the log$_{10}$ of the conductivity distribution of a given family, restricted to entries with an assigned family label.
+
+The major oxide and sulfide families show distinct but physically reasonable profiles. Garnet and NASICON-like compounds exhibit relatively broad distributions centered in the mid-tohigh conductivity regime, consistent with the view of these chemistries as workhorse oxide SSEs with significant tunability through composition and  doping. Perovskite also span several orders of magnitude, extending further toward lower conductivities, reflecting the coexistence of both well-optimized and poorly conducting variants in the literature. In constrast, LISICON/Thio-LISICON, argyrodite, halide, and especially LGPS-type thiophosphates are skewed toward higher conductivities, with the LGPS ridge appearing both narrow and shifted toward the most conductive part of the axis. This hierarchy closely mirrors the qualitative ranking typically reported in SSE reviews, where sulfide frameworks and optimized thiophosphates tend to outperform most oxides at comparable temperatures.
+
+Several families with fewer data points - such as anti-perovskites or glass/LIPON - display narrower ridges, which should be interpreted primarily as an indication of limited sampling rather than intrinsically low variability. Nevertheless, their median values align with expectations: hydrides and anti-perovskites occupy relatively high-conductivity windows, whereas oxide frameworks (other), glasses and borate-based materials cluster at lower conductivity. The "Unassigned" group exhibits a broad, featureless distribution, reinforcing that structural family information is informative for stratifying transport behavior.
+
+Overall, Figure \ref{fig:Ridgeline} shows that once conductivity is tratified by structural family, the dataset reproduces the qualitative performance trends that underpin current SSE design: sulfide-based frameworks concentrate the highest conductivities, oxide families provide a broad but generally lower-conductivity backbone, and more specialized chemistries occupy intermediate niches. This agreement between data-driven distributions and established chemical intuition is an important sanity check on the curation pipeline and indicates that the merged dataset can be used to study structure-property relations without introducing obvious artefacts in the conductivity hierarchy.
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.90\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig5a_Histogram_Temperature.png}
+    \end{subfigure}
+    \caption{Temperature coverage of conductivity measurements. Histogram of reported measurement temperatures (°C) for entries with available temperature metadata.}
+    \label{fig:TemperatureCoverage}
+\end{figure*}
+
+A natural question is then at which temperatures these ionic conductivities have been measured. Figure \ref{fig:TemperatureCoverage} summarizes the distribution of reported temperatures for the entries where this metadata is available. In absolute terms, only ca. ~150 entries (5\%) of the conductivity entries include explicit temperature therefore is important to highlight that the information reflects this subset rather than the full database. All temperature values present in the underlying source datasets were retained during curation, and the missing coverage therefore originates from the original literature and prior databases rather than from the harmonization procedure applied in this work.
+
+The histogram shows a strong concentration of measurements in the 0-50°C interval, with progressively fewer data points at elevated temperatures and a long but sparsely populated tail extending to ~600°C. 
+
+This pattern is fully consistent with the experimental focus of the field: most measurements target conditions close to room temperature or slightly above, where practical battery operation is expected. The moderate number of data points in intermediate windows (50-200°C) and the very limited coverage at higher temperatures indicate that truly systematic temperature sweeps are relatively rare. From a modeling perspective, this has two consequences. First, the database is well suited for benchmarking and training models aimed at predicting near-ambient ionic conductivity, which is arguably the most relevant design target. Second, the scarcity and uneven distribution of temperature metadata constrain the use of the present dataset for robust Arrhenius analyses or for learning detailed temperature-dependence laws; such tasks will require either complementary datasets or targeted follow-up experiments. 
+
+Importantly, by making this imbalance explicit, Figure \ref{fig:TemperatureCoverage} clarifies both the strengths and the limitations of the current temperature coverage rather than leaving them implicit in the raw data, establishing that temperature metadata is strongly concentrated near room temperature with a long, sparse high-temperature tail.
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.50\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig5b_Heatmap_Family_Temperature_Conductivity.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.40\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig5b_Scatter_Conductivity_Temperature.png}
+    \end{subfigure}
+    \caption{Temperature–conductivity landscape by family. Left: median $\log_{10}(\sigma)$ for each structural family in four temperature windows. Right: scatter plot of $\log_{10}(\sigma)$ versus temperature colored by structural family.}
+    \label{fig:TemperatureFamilies}
+\end{figure*}
+
+To explore how temperature-dependent transport is represented across structural classes, we analyze the subset of entries for which both conductivity and measurement temperature are reported. Figure \ref{fig:TemperatureFamilies} combines this information in two complementary views: on the left, the median log$_{10}$ of conductivity for each structural family in four temperature windows; while on the right, displays all individual datapoints as log$_{10}$ of conductivity vs. temperature, colour-coded by family.
+
+Across families with measurements spanning multiple windows (garnet, NASICON-like, LISICON/Thio-LISICON, argyrodite, anti-perovskite and other oxide frameworks group), the median conductivity generally increases with temperature, consistent with thermally activated ionic transport. Garnets, for instance, evolve from a median of ~$10^{-5.8}$ S cm$^{-1}$ in the 5-30°C window to ~$10^{-1.6}$ S cm$^{-1}$ at 210-600°C. NASICON-like and LISICON-type oxides show a similar overall trend, albeit with some non-monotonic behavior in intermediate windows that likely reflects small sample sizes and compositional diversity rather than a breakdown of Arrhenius behavior. At near-ambient conditions, the ranking of medians places perovskites, argyrodites and LISICON-type chemistries among the most conductive families, whereas halides, glasses/LIPON and generic oxide frameworks remain in the lower conductivity regime. This ordering is in agreement with established qualitative understanding of inorganic SSE design, and therefore provides an internal consistency check on the merged, MP-linked dataset and on the structural family assignments.
+
+The scatter representation in Figure \ref{fig:TemperatureFamilies} further illustrates these trends at the level of individual measurements. Most datapoints cluster between 0 and 100°C, with sparse extensions up to ~600°C for selected families, mirroring the temperature coverage discussed in Figure \ref{fig:TemperatureCoverage}. Within this range, higher temperatures generally coincide with higher reported conductivities for a given family, which is qualitatively consistent with thermally activated transport. However, the substantial vertical spread at fixed temperature, the family-dependent compositional diversity, and the limited number of measurements per temperature window mean that the present data are not suitable for extracting reliable activation energies or for detailed Arrhenius analysis. Instead, Figure \ref{fig:TemperatureFamilies} should be interpreted as (i) confirming that the merged dataset respects basic physical expectations regarding the sign of the temperature dependence, and (ii) identifying where temperature–family combinations are well represented versus clearly under-sampled.
+
+\begin{comment}
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.90\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig5c_Heatmap_Family_Tier_Temperature.png}
+    \end{subfigure}
+    \caption{Hello World.}
+    \label{fig:TemperatureTier}
+\end{figure*}
+\end{comment}
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.90\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{Zapdos_Plots/Fig7_Bar_Element_Top20.png}
+    \end{subfigure}
+    \caption{Elemental composition of the merged dataset. Horizontal bar chart of the 20 most frequent elements, counted over all entries.}
+    \label{fig:ElementFrequency}
+\end{figure*}
+
+Figure \ref{fig:ElementFrequency} provides a compositional view of the merged dataset by reporting the frequency of the 20 most common elements across all entries. Oxygen and lithium clearly dominate, appearing in ~2400 and ~2100 entries, respectively, with phosphorus and sulfur following at a lower but still substantial level. The remainder of the top-20 is populated by transition metals (Fe, Ti, Mn, Zr, V, Co), network formers/modifiers (Si, B, La, Ge, Al), light elements (H, N) and halogens (Cl, F), each occurring in a few hundred to a few dozen entries.
+
+This composition profile is consistent with the structural family distribution discussed in Figure \ref{fig:EntriesPerFamily}. The combination of Li, O, and P reflects the dominance of oxide and oxyphosphate frameworks such as garnets, NASICON-like phosphates, perovskites and LISICON-type materials. Sulfur, together with halogens like Cl and F, traces the presence of argyrodites, halide electrolytes and related thiophosphate chemistries. Transition metals (Fe, Ti, Mn, Zr, V, Co) and cations such as La, Ge, B and Al typically enter as aliovalent dopants or framework stabilizers, mirrorring common design strategies in the SSE literature (\textit{e.g.} Li-excess creation, sublattice disorder, glass-ceramic tunning). In other words, the elemental spectrum confirms that the dataset is concentrated on the same Li-O-P/S chemistries that underpin contemporary inorganic SSE research rather than drifting into exotic or poorly studied compositional space. 
+
+One detail worth clarifying concerns the NASICON-like family. While "NASICON" originally denotes Na$_{1-x}$Zr$_{2}$Si$_{x}$P$_{3}$O$_{12}$-type sodium superionic conductors, a substantial fraction of experimental reports refer to Li-substituted analogues as "NASICON" as well. In line with this prevalent usage, we retain the NASICON(-like) family label in the database while explicitly recording the actual stoichiometry, including Li-Na substitutions, at the composition level. This convention explains why Na appears far below Li in Figure \ref{fig:ElementFrequency}, despite the family's historical nomenclature, and highlights the practical, Li-centric focus of the current SSE development.
+
+Also, it is important to note that Figure \ref{fig:ElementFrequency} reports entry as counts, not unique compositions. Elements associated with chemistries that have been studied more extensively (\textit{e.g.} Li-O-P garnets) will naturally appear more often. For downstream machine-learning and screening applications, this bias is in fact desirable: it ensures that the densely samples region of chemical space corresponds to technologically relevant hosts and dopant chemistries, while still leaving room to expand towards less explored elements in future iterations of the dataset.
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.70\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figs/DefFigCov1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.70\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{figs/DefFigCov2.png}
+    \end{subfigure}
+    \caption{Experimental coverage per Materials Project entry. (a) Histogram of the number of experimental entries per MP-ID over the full 0–300 range. (b) Zoom of the same distribution for the 0–20 range.}
+    \label{fig:EntriesPerMPID}
+\end{figure*}
+
+Finally, beyond which compositions and families are present and their distributions regarding conductivity, temperature it is important to know how densely individual materials are characterized. Up to now, all the discussions were based on entry density. To close this section, the last analysis adopt an MP-ID-centric analysis, where  Figure \ref{fig:EntriesPerMPID} addresses shows the distribution of the number of experimental entries attached to each of the 310 distinct MP-IDs in the dataset. On top, the Figure displays the full range (0-300 entries per MP-ID), while the bottom panel zooms into the 0-21 interval, where most of the data lie.
+
+Both panels reveal a highly skewed coverage pattern. The vast majority of MP-IDs are represented by only a handful of measurements: most materials fall into the 1–2 and 3–4 entry bins, and only a small minority exceed 10 reported conductivities. A few outlier compositions accumulate tens to on the order of a hundred measurements, which explains the long right tail visible in the top panel. In other words, the merged database is broad in terms of materials diversity (hundreds of distinct MP-IDs), but shallow in per-material sampling for most entries.
+
+This imbalance has direct implications for how the dataset should be used. For ML or statistical modeling, these histograms make explicit that the resource primarily supports learning structure–property trends across many different materials, rather than building highly precise, per-material uncertainty estimates. At the same time, the small set of heavily studied MP-IDs forms a natural “benchmark subset” for validating models, probing reproducibility across experiments, or analyzing systematic effects such as dopant level or processing conditions. Crucially, the linkage transforms a heterogeneous literature corpus into an object where experimental coverage per material is transparently quantifiable.
+
+Taken together, Figures \ref{fig:DataSources}-\ref{fig:EntriesPerMPID} show that the merged SSE-MP dataset is both extensive and deliberately structured. It aggregates over 3000 conductivity measurements from three complementary sources, assigns them to well-defined confidence tiers, and anchors them to MP entries with rich structural and computational descriptors. The data span the main inorganic SSE families and chemistries used in practice, cover more than twenty orders of magnitude in ionic conductivity, and include temperature metadata for a subset of entries that is sufficient to reveal consistent thermal trends while also exposing gaps in the experimental record. At the same time, the analysis highlight the real biases of the field - dominance of a few canonical families and chemistries, sparse per-material coverage, and uneven temperature reporting. This combination of breadth, explicit match quality, and quantified limitations is what makes the dataset a useful understructure for model development and machine-learning applications.
+
+\section{Database Implementation into an AI-assisted structure}
+This case study introduces a retrieval-augmented generation (RAG) interface. This interface enables users to access curated conductivity records in natural language, with evidence always supported by direct references (provenance) to exact database entries. The methodology includes three stages: (i) converting each database record into a uniform textual form suitable for information retrieval, (ii) building a vector index over dense embeddings of each record, and retrieving the most relevant entries for a given user query, and (iii) generating grounded answers conditioned on retrieved context, using a local (on-premise) and offline Large Language Model (LLM). All results can be traced back to the source database entries. The following subsections describe how each stage was implemented. Figure \ref{fig:CaseStudyGraphicalAbstract} gives a visual summary. 
+
+
+
+We evaluate the interface using sample queries about SSEs to highlight its strengths and limitations for this dataset. More specifically, question 1 (Q1) aims to evaluate the ability to answer the top-conductivity question given a family-type constraint, in Section \ref{sec:q1}; question 2 (Q2) tests the ability to identify and analyze the conductivity variance and data quality tiers of a given garnet electrolyte, in Section \ref{sec:q2}; question 3 (Q3) assess the reliability and hallucination resistance when tasked with edge cases, such as missing data, in Section \ref{sec:q3}.
+
+
+%This case study introduces a retrieval-augmented generation (RAG) interface that enables evidence-grounded, natural-language access to the curated conductivity records while preserving provenance to specific database entries. The methodology comprises three stages: (i) transforming each database record into a standardized textual representation suitable for retrieval, (ii) constructing a vector index and retrieval procedure to select relevant records for a given query, and (iii) generating a constrained summary from the retrieved subset using a local language model, with all outputs traceable to the underlying entries. The implementation details of each stage are described in the following subsections, and a graphical overview is provided in Figure \ref{fig:CaseStudyGraphicalAbstract}. We then evaluate the interface on a small set of representative SSE queries to characterize its practical capabilities and failure modes on the present dataset.
+
+%To illustrate how the curated conductivity database can support downstream analysis and scientific exploration, we implemented a small retrieval-augmented query interface on top of the final matched dataset. The goal of this case study is not to propose a new machine-learning architecture, but to demonstrate that, once experimental measurements and Materials Project entries are consistently linked and tiered, the resulting dataset can be interrogated directly in natural language while preserving the underlying numerical and structural information. In the following, we first describe the construction of a text-vector index and query pipeline that expose the database to a local language model, and then use a small set of representative queries to examine both the capabilities and limitations of this interface when applied to the present dataset. A graphical abstract of this Case Study is represented in Figure \ref{fig:CaseStudyGraphicalAbstract}.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=1\linewidth]{figs/CaseStudyGraphicalAbstract.png}
+    \caption{Graphical abstract of the methodology of this Case Study. The database information is normalized, transformed into cards and embedded using \textit{sentence transformers}. For each question, the three persistent artifacts are read to perform the semantic retrieval, apply a deterministic conductivity-based ranking on the subset, and feed the ranked records into a constrained LLM prompt that returns a grounded neutral-language answer and a structured JSON output.}
+    \label{fig:CaseStudyGraphicalAbstract}
+\end{figure*}
+
 
 \subsection{Methodology}
-Hello World.
+\subsubsection{Documents Generation and Embedding}
+
+To enable semantic querying over the matched conductivity database, we serialized each row of the curated dataset into a self-contained textual document. Each document consists of standardized column names paired with their corresponding values, with missing or undefined entries represented by the literal token \textit{NA}. To avoid exceeding a practical context length, documents longer than 4000 characters were truncated with an appended ellipsis. A canonical identifier (ID) was assigned to each entry to enable traceability back to the source database.
+
+
+
+Finally, each document was embedded using the \textit{Sentence Transformers}\textit{all-MiniLM-L6-v2} encoder \cite{reimers2019sentence}\footnote{\url{https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2}}, mapping documents to a 384-dimensional dense representation. Embeddings were L2-normalized (unit length) to make cosine similarity equivalent to inner product. The resulting matrix of shape N x 384 was converted to 32-bit floating-point before indexing.
+
+For similarity search, we employed FAISS \cite{johnson2019billion, douze2024faiss} with an exact inner-product index (IndexFlatIP), using the embedding size as the index dimensionality. Given the modest dataset size, the exact k-nearest-neighbor search provides deterministic, fast retrieval without the approximation errors introduced by more complex indexing schemes (\textit{e.g.} product quantization or HNSW).
+
+The embedding pipeline produces three persistent artifacts: the FAISS index, the serialized passages, and a metadata record capturing provenance information (model name, column mappings, and a cryptographic hash of the source file). These artifacts are immutable and produced once per dataset version. All subsequent queries operate exclusively on them, ensuring reproducibility across a fixed version of the underlying database.  This system is graphically represented in Figure \ref{fig:CardsCreation}.
+
+
+% To enable semantic querying over the matched conductivity database, we constructed a text-vector index from the final dataset described in the previous sections. The input was the curated CSV file containing all experimental entries. This step is read-only with respect to the scientific data: no numerical values are changed or imputed, and each row is simply normalized and encoded into a textual "card" and an associated dense vector.
+
+% To achieve this, the CSV was loaded in Python with all columns read as strings to avoid type-inference artefacts. Original column names were normalized in a deterministic way: leading and trailing whitespace were removed, internal whitespace was replaced with underscores, and any remaining non-alphanumeric characters were stripped. For example, \textit{Conductivity (S / cm)} becomes \textit{Conductivity\textunderscore S \textunderscore \textunderscore cm} and \textit{Temperature (°C)} becomes \textit{Temperature\textunderscore \textunderscore C}. The full mapping from original to normalized column names is stored in a metadata file for reproducibility.
+
+% A primary identifier column was then selected automatically using a fixed priority list of names: \textit{id, mp\textunderscore id, material\textunderscore id, identifier, uid, doi, name, label}. The first of these present in the normalized header was taken as the canonical ID column; if none was found, the first column of the CSV was used as a fallback. In addition, an integer row index \textit{\textunderscore rowid} was added to the dataframe to provide a stable reference even if other identifiers are missing or duplicated.
+
+% Each row of the normalized dataframe was serialized into a self-contained text record (\textit{i.e.} card) designed to be both human-readable and easy to parse with simple string operations. For every row, the script constructs a list of key-value pairs as in: (i) A canonical ID line: value of the chosen ID (ii) A row index line of \textit{\textunderscore rowid} (iii) One entry for every normalized column \textit{i.e.} the stringified cell value.
+
+% Missing or undefined values (including NaN and empty strings) are converted to the literal token \textit{NA}, so that absence of information is explicitly represented in the text. All pairs are then joined with a semicolon separator to produce a single string per row. No scientific filtering is performed at this stage: all columns in the matched dataset are included verbatim in the card. To prevent pathological prompt lengths from very long text fields, cards longer than 4000 characters are truncated to that length and a trailing ellipsis is appended. 
+
+% Finally, the collection of cards was embedded using the \textit{sentence-transformers/all-MiniLM-L6-v2} model, which maps each text card to a 384-dimensional dense representation. Embeddings were L2-normalized (unit length) to make cosine similarity equivalent to inner product. The resulting matrix of shape N x 384 was converted to a 32-bit floating point before indexing.
+
+% For similarity search we employed FAISS with an exact inner-product index (IndexFlatIP). The index dimensionality was set to the embedding size, and all N normalized embeddings were added. Given the modest dataset size, the exact k-nearest-neighbour search provides deterministic and fast retrieval without the approximation error introduced by more complex indexing schemes (\textit{e.g.} product quantization or HNSW).
+
+% As a result, three artificats are written to disk and form the basis of all subsequent case-study experiments: (i) The FAISS index containing all card embeddings (ii) A \textit{.jsonl} file where each line has the form {"text": "<card>"} and (iii) A metadata file storing the embedding model name, the number of cards, the chosen identifier column, the lists of original and normalized column names, the SHA-256 hash of the source CSV file, and the basename of the source CSV.
+
+% It is important to note that this indexing procedure is run once per dataset version. All further queries and analyses described in the further sections operate exclusively on these immutable artifacts, ensuring that results are reproducible for a fixed version of the underlying database. This system is graphically represented in Figure \ref{fig:CardsCreation}.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=1\linewidth]{figs/cards_creation.png}
+    \caption{Graphical abstract of the document generation and embedding. Database rows are normalized and serialized into text cards. They are further embedded through all-MiniLM-L6-v2, and indexed via FAISS IndexFlatIP, producing three immutable output artifacts used in all subsequent queries.}
+    \label{fig:CardsCreation}
+\end{figure*}
+
+
+\subsubsection{Retrieval-augmented query interface}
+%The retrieval interface uses two hyperparameters: the number of retrieved neighbors \textit{k} and the number of top-ranked records t\textit{top\textunderscore n} . Typical values in this case study are $k \in [30, 60]$  and $top$\textunderscore n $\in [5,30]$, as detailed in the Supplementary Information.
+
+The previously described text-vector index is queried via a lightweight retrieval-augmented interface. This interface takes a free-text question and retrieves a semantically relevant subset of database entries. It then applies a deterministic numerical ranking over that subset. Finally, it uses a local LLM to produce a short answer grounded in real experimental data.
+
+
+
+The retrieval uses two key hyperparameters: number of retrieved neighbors \textit{k} and the number of top-ranked records t\textit{top\textunderscore n} . Typical values in this case study are $k \in [30, 60]$  and $top$\textunderscore n $\in [5,30]$, as detailed in the Supplementary Information.
+
+
+
+For semantic retrieval, each incoming question is embedded into the same vector space used during index construction through the Sentence Transformers. The resulting 384-dimensional vector is L2-normalized and then passed to FAISS. FAISS performs an exact k-nearest-neighbor search under inner product (cosine) similarity. The service requests the top-k indices and maps them back to the corresponding text document. This is the only semantic step in the pipeline. All further processing uses explicit fields from these retrieved cards.
+
+To answer conductivity-focused questions, the interface does not delegate any numeric reasoning to the language model. Instead, it uses a deterministic post-retrieval ranking of the retrieved subset. Simple regular-expression matchers extract fields of interest from each document. Documents are sorted by conductivity in descending order, and the top-N results are presented to the language model. This deterministic ranking ensures the Top Records set is reproducible.
+
+If the retrieval step yields no document with a valid conductivity field, the system enters a fallback mode. For example, this occurs when a query has a property that is not present in the database. The system skips numeric ranking entirely and instructs the model to answer, if possible, using only the raw text in the retrieved documents. If the requested information is not available, the model reports it.
+
+The final step is to generate a human-readable answer constrained to the selected documents. We used LLama3.1:8b \cite{grattafiori2024llama3} as the LLM, with \textit{temperature = 0.0} to minimize stochastic variation. 
+
+The prompt is constructed in two parts. First, a structured context block enumerates the top-N entries. This includes their identifiers, chemical formulas, conductivities, temperatures, data quality tiers, and structural families. Second, an instruction block directs the model to list the entries in descending order of conductivity. The model then provides a brief scientific commentary (typically two to three sentences) on observed trends, such as which structural families dominate the highest conductivities. 
+
+In fallback mode, a different prompt template is used: the model is given a small batch of retrieved documents without any ranking and is instructed either to summarize what the database contains about the user's query or to explicitly state that no relevant data was found.
+
+
+
+
 \subsection{Results and Discussion}
-Hello World.
+This section evaluates the behavior of the retrieval-augmented interface when applied to the curated conductivity database, focusing on whether the language model produces responses that remain numerically consistent with the retrieved records and scientifically meaningful in the SSE context. Using a small set of representative domain queries, we assess the practical utility of this semantic query layer for interactive exploration of the matched dataset and document its prospects and limitations for interpreting database-specific fields and evidence-tier annotations.
+
+To this end, we analyze three aspects of the queries: (i) the subset of entries retrieved by semantic similarity, (ii) the deterministically ranked "Top Records" derived from this subset, and (iii) the natural-language answer produced by the local language model. The retrieved and ranked records are directly compared with the underlying CSV, so that numerical correctness and coverage are evaluated independently of the model's generation. Taken together, the examples illustrate both the strengths of the interface, such as material's family-constrained discovery and rapid inspection of structurally equivalent entries, and its limitations, in particular with respect to approximate retrieval and imperfect enforcement of symbolic constraints, such as variables and chemical formulas. The generated queries and responses are fully accessible in the Supplementary Information and can be reproduced with the same dataset and model version.
+
+
+
+\subsubsection{Q1: Family-constrained Discovery of Top-conductivity Garnets} \label{sec:q1}
+In the first query, we asked for "the top five garnet-type solid electrolytes by ionic conductivity" and requested basic metadata (identifier, composition, MP ID, Tier, Family, Temperature). This is a typical exploratory task a domain user might perform when scanning a database for promising candidates within a structurally defined family, without having to remember column names or construct explicit filters. 
+
+For this query, with $k = 100$, the semantic retrieval behaved as intended, returning results from the FAISS index that were exclusively labeled as "Garnet", showing that the documents and embedding model are sufficient to isolate a chemically coherent subset from the full database. Within this retrieved subset, the deterministic ranking procedure selected five distinct entries with the highest conductivity. 
+
+Compared to the full set of garnet entries in the database, these five materials are all high-conductivity garnets. However, only 3 of 5 were in the strict global top 5 by conductivity. The other 2 entries were not present in the retrieved documents. This is expected when using a fixed-k nearest-neighbor search in embedding space. The query retrieves a local semantic neighborhood of garnets that match the question's phrasing, and deterministic ranking then selects the highest-conductivity entries within that group. Thus, this case shows a realistic usage pattern: the interface efficiently surfaces a small set of strong garnet candidates for further inspection but does not guarantee exhaustive coverage of all garnets in the database.
+
+Despite this incomplete coverage and it missed 2 of 5 global top-5 entries, the generated answer identified trends such as \ce{Nb} and \ce{Ta} being promising doping agents for LLZO, highlighting well-known compositions such as \ce{Li5La3Nb2O12} (LLNO) \cite{Zhao2018DenseMethod} and \ce{Li5La3Ta2O12} (LLTa) \cite{Kotobuki2017ImprovementTa}, with conductivities on the order of $10^{-2}$ S cm$^{-1}$, as well as lower-conductivity variants of the LLZO. The model correctly treated missing temperature data (\textit{e.g.} for ACS-1664) as a limitation for quantitative comparisons, which aligns with best practice.
+
+This reinforces the intended division of roles in the case study. The curated database and the deterministic ranking layer are treated as the source of truth after retrieval. The language model serves as a convenience layer for summarizing a small, grounded set of entries. In practice, the interface already provides useful functionality for database exploration. Users who require strict global optimality can still fall back to direct queries on the structured database.
+
+\subsubsection{Q2: LLZO Cluster and Conductivity Spread at Fixed Structure}\label{sec:q2}
+The second query focused on the garnet-type solid electrolyte \ce{Li7La3Zr2O12} (LLZO). The prompt asked to "identify entries that clearly correspond to LLZO", operationalized as records where the chemical formula is close to \ce{Li7La3Zr2O12}, small deviations in stoichiometry allowed, and/or where Family = Garnet and best\textunderscore mpid corresponds to LLZO (mp-942733). The prompt then requested a short list of entries, together with a summary of the conductivity ranges and Tiers, and a comment on the benefits of having them mapped to a single Materials Project structure.
+
+With $k = 80$, the semantic retrieval step returned a chemically coherent neighborhood dominated by LLZO and LLZO-related garnets. The retrieved block contains numerous entries with the expected chemical formula and ID, covering conductivities from $10^{-5}$ S cm$^{-1}$ down to $10^{-11}$ S cm$^{-1}$ with several entries in the intermediate range between $10^{-6}$ S cm$^{-1}$ and $10^{-7}$ S cm$^{-1}$.
+
+The same neighborhood also includes chemically similar Ta- and Nb-containing garnets, such as \ce{Li5La3Ta2O12} and a Te-garnet \ce{Li3Nd3Te2O12}. Given that the question explicitly allowed "small deviations in stoichiometry", this behavior is appropriate: the interface effectively expands the LLZO query into an LLZO-family cluster that matches common usage in the literature (Ta- and Nb-doped LLZO, \textit{etc.}).
+
+The deterministic ranking by conductivity then operated as intended within this set. All values are taken directly from the curated dataset, and the RAG pipeline did not fabricate any compositions, MP IDs, or conductivity numbers. 
+
+The LLM answer correctly highlights several of these features while also illustrating two important limitations. First, it reports that "the conductivity of LLZO ranges from approximately 1.660e-02 to 9.500e-07 S/cm, with most measurements falling in the range $10^{-5}$ to $10^{-6}$ S cm$^{-1}$", and lists a set of "Top Records for LLZO" that mixes Ta-garnets with strict LLZO entries, highlighting how the model is effectively treating the broader "LLZO-family" cluster. Second, when commenting on data quality, it states that "Tier values ... mostly T2 and T4 indicate a moderate to high level of confidence", which contradicts the project's definition (T1 is the highest confidence, T4 is the lowest). The Tier labels are correctly read from the retrieved rows, but their semantics are misinterpreted because the Tier scheme was not defined in the prompt.
+
+Together, these observations reinforce three central points of the case study. First, the LLZO query showcases the main added value of the database itself: multiple heterogeneous experimental reports can be collapsed onto a single reference structure, making it straightforward to inspect the true multi-order-of-magnitude spread in the reported conductivities and their Tier annotations. Second, the semantic layer is useful: by allowing small stoichiometric deviations, the interface can pull in LLZO-related doped garnets that are often discussed together with LLZO in the literature, which is valuable for exploratory analysis. Third, project-specific categorical labels and naming conventions (such as the Tier scheme or the exact meaning of "LLZO") cannot be expected to be inferred by a language model without explicit definition. In practice, strict categorical distinctions are best enforced via structured database queries. The RAG interface should be understood as a tool for surfacing and narrating retrieved subsets, not for inferring the semantics of project-specific labels.
+
+\subsubsection{Q3: Temperature Coverage}\label{sec:q3}
+
+
+In the first two queries (Q1 and Q2), the interface had access to plenty of grounded numerical information in the retrieved documents: conductivities, compositions, MP IDs, and Tier labels were all present, and we observed no evidence that the model invented values outside the database. However, those examples did not test what happens when the model is asked to reason about a field that is essentially empty in the relevant part of the dataset. Q3 was therefore designed explicitly as a stress test in such a corner case: \textit{can the system avoid hallucination and remain grounded when there is effectively no temperature information to support the requested analysis?}
+
+Prior examination of the full database showed that this situation occurs naturally for measurement temperature: when all entries are globally ranked by conductivity, the first records with non-missing temperature values appear only at positions 68 and 69. This means that none of the top 60 conductors has a recorded measurement temperature - in this last question, we exploit this fact.
+
+We biased the query towards very high conductivity and set the retrieval parameter to $k = 60$, so that, by construction, the retrieved neighborhood would consist of genuine high-conductivity entries but should contain no valid temperature values (unlike queries such as "list entries with the highest measurement temperature"). Therefore, the goal was instead to probe behavior in the most challenging region, where the relevant field is systematically absent in the materials of interest, and to check whether, under these conditions, the model would hallucinate.
+
+The retrieval and deterministic ranking behaved exactly as expected. The retrieved set and the "Top Records" block contained highly conductive materials that matched the top of the global distribution. For all these entries, the temperature field was marked as not available. This reflects a systematic pattern in the underlying literature: the most striking conductivity values are often reported without a clearly specified temperature, or in a form that cannot be captured as a single scalar metadata field. The database faithfully encodes this situation and does not attempt to infer or impute temperatures for such records.
+
+The language model's answer did not attempt to patch this gap through fabrication. Faced with a retrieved set in which the requested field is effectively empty, the model neither hallucinated temperature values nor fabricated a temperature-based ranking. Instead, it explicitly remarked that the retrieved high-conductivity examples lack temperature values and concluded that a global temperature-centric comparison is not supported by the available data. In contrast to Q1 and Q2 - where the model had abundant grounded numbers and still had to be interpreted carefully - Q3 places the system in a situation where the only scientifically honest answer is essentially "there is not enough temperature metadata here to do what you asked", and the interface behaves conservatively rather than inventing details.
+
+This query, therefore, serves as a deliberate scope and robustness test for the case study. The present pipeline is intentionally conductivity-centric: it treats temperature as optional contextual metadata and does not attempt to reconstruct missing measurement conditions. For analyses that genuinely require systematic temperature dependence, a different workflow would be needed, based on a pre-filtered subset with well-annotated temperatures and possibly additional manual curation. In the context of this work, Q3 makes that limitation explicit and, together with Q1 and Q2, shows that the retrieval-augmented interface remains grounded in the curated dataset both when it has rich numerical support and when it is confronted with a field that is systematically empty in the retrieved regime. This sets up the final discussion: the system is best understood as a semantic front-end for exploring the conductivity landscape defined by the database, while strict constraints and the interpretation of sparse metadata remain the responsibility of the structured layer and the user.
+
+
 
 \section{Conclusion}
-Hello World.
 
-\section{Tasks da Luana - Isso Será Apagado Depois}
-\begin{itemize}
-    \item Figure for "Data Processing and Cleaning". \textbf{(Done)}
-    \item Figure for "Matching Methodology and Tiers". \textbf{(Done)}
-    \item Figure for RAG pipeline diagram (Database → Embedding → FAISS → LLM → Answer with IDs).
-    \item Help me to transform the "informal" texts into the actual stuff. All the info is already there. Start with Introduction. Then, go to Data Cleaning. 
-    
+In this work we addressed a central bottleneck in data-driven solid-state electrolyte research: the lack of an explicit, machine-readable link between experimental ionic conductivity measurements and rigorously defined crystal structures. By harmonizing three open experimental resources (OBELiX, LiIon, and Shon \textit{et al.}) with the Materials Project, and by enforcing a transparent tiered matching scheme, we constructed a merged corpus in which every retained entry is associated with a unique MP identifier and a quantified level of structural confidence. This directly connects experimental performance data to the rich structural and computational descriptor space of a generalist materials database.
 
-\end{itemize}
+The resulting dataset comprises 3123 conductivity measurements mapped onto 310 distinct Materials Project entries, with 554 high-confidence records (T1–T3) and a larger, lower-confidence extension (T4). A systematic statistical analysis shows that the structurally assigned subset is dominated by the same families that underpin contemporary SSE research (garnet, NASICON-like, perovskite, LISICON/Thio-LISICON, argyrodite and related sulfide frameworks), while still including a chemically meaningful tail of halides, glasses/LIPON-type systems, thiophosphates, hydrides and other exploratory chemistries. The conductivity distributions span nearly twenty orders of magnitude and reproduce the expected hierarchy between oxide and sulfide frameworks, while the tier-resolved views confirm that the matching confidence primarily reflects structural evidence rather than selectively enriching or excluding particular conductivity regimes. These observations provide a strong internal sanity check on the curation pipeline and indicate that the merged dataset can support structure-aware analysis without introducing obvious artefacts in the conductivity landscape.
+
+At the same time, the statistical overview makes visible several real limitations of the current experimental record. Temperature metadata are present only for a small fraction of entries and are heavily concentrated near room temperature, which constrains rigorous Arrhenius-type analyses even though basic trends in the sign of the temperature dependence are recovered. Per-material coverage is broad but shallow: most Materials Project entries are associated with only a handful of experimental measurements, with a small number of compositions forming a long right tail of heavily studied systems. Finally, a substantial fraction of the original literature lacks standardized structural-family labels. The merged dataset therefore does not ``fix'' these gaps; instead, it quantifies them and separates a high-confidence structural core from a broader exploratory regime, so that downstream users can make informed choices about which parts of the data are appropriate for a given task.
+
+As a proof of concept, we also demonstrated that the curated, MP-linked corpus can support a lightweight retrieval-augmented interface that answers family- and composition-specific queries while keeping all numerical reasoning grounded in the underlying database. The case study illustrates both the strengths and the limits of this approach: semantic retrieval and deterministic ranking provide an efficient way to surface chemically coherent subsets and high-conductivity candidates, while model responses remain constrained by the actual content of the dataset, especially in regimes where key metadata (such as temperature) are sparse. In this sense, the language model functions as a convenience layer on top of a well-defined scientific object, rather than as a substitute for the structured database itself.
+
+Overall, the present work provides more than a single merged dataset: it offers a concrete and reproducible blueprint for unifying experimental property databases with large-scale materials repositories. The combination of explicit structural linkage, tiered match confidence and quantified statistical coverage yields a resource that is immediately useful for high-throughput screening, benchmarking and machine-learning model development, while simultaneously highlighting where additional experimental and curation efforts are most urgently needed. The same workflow can, in principle, be extended to other properties and materials classes, providing a path toward increasingly dense, structurally anchored experimental datasets for materials discovery.
+
 
 %\appendix
 %\section{My Appendix}
@@ -449,7 +890,7 @@ This work was financially supported by Fundação para a Ciência e a Tecnologia
 \bibliographystyle{cas-model2-names}
 
 % Loading bibliography database
-\bibliography{cas-refs.bib}
+\bibliography{cas-refs.bib,references}
 
 
 \end{document}
